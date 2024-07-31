@@ -1,6 +1,6 @@
-import './App.css'
+import '../../App.css'
 
-function App() {
+export const MyOrders = () => {
 
   return (
     <div className="bg-red-100">
@@ -8,5 +8,3 @@ function App() {
     </div>
   )
 }
-
-export default App
