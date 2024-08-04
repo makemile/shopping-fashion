@@ -3,7 +3,7 @@ import { NavItem } from "./Navitem";
 export const Navbar = () => {
   const activeStyle = "underline underline-offset-4";
   return (
-    <nav className="flex justify-between items-center fixed z-10 w-full py-5 px-8 text-dm font-light">
+    <nav className="flex justify-between items-center fixed z-10 w-full py-5 px-8 text-dm font-light top-0">
       <ul className="flex items-center gap-2">
         <li className="font-semibold text-lg">
           <NavItem to="/" activeStyle={activeStyle}>
