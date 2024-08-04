@@ -1,17 +1,14 @@
-import {useRoutes, BrowserRouter} from 'react-router-dom'
+import {BrowserRouter} from 'react-router-dom'
 import { AppRoutes } from '../../routes'
-import { Home } from "../Home"
-import { MyAccount } from "../MyAccount"
-import { MyOrder } from "../MyOrder"
-import { MyOrders } from "../MyOrders"
-import { SignIn } from "../SignIn"
 import '../../App.css'
+import { Navbar } from '../../components/Navbar'
 
 
 export const  App = () =>  {
   return (
     <BrowserRouter>
    <AppRoutes/>
+   <Navbar/>
     </BrowserRouter>
   )
 }

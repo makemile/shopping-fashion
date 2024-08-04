@@ -24,7 +24,7 @@ export const AppRoutes = () => {
       element: <MyOrders />,
     },
     {
-      path: "sign-in",
+      path: "/electronics",
       element: <SignIn />,
     },
   ]);
