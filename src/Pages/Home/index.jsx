@@ -1,14 +1,22 @@
 import "../../App.css";
 import { URLAPI } from "../../services/Api";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { CardUI } from "../../components/ui/CardUI";
 import { Layout } from "../../components/Layout";
-import { PorductDetail } from "../../components/ProductDetail";
+import { ProductDetail } from "../../components/ProductDetail";
+import { ShoppingCartContext } from "../../context";
 
 
 export const Home = () => {
   const [data, setData] = useState([]);
+  const context = useContext(ShoppingCartContext);
+ 
+
+  const showProduct = (productDetail) => {
+    context.openProductDetail();
+    context.setProductToShow(productDetail);
+  }
 
   useEffect(() => {
     async function fetchAPI() {
@@ -34,10 +42,13 @@ export const Home = () => {
               image={item.image}
               category={item.category}
               price={item.price}
+              showProduct={showProduct}
+              item = {item}
+              context = {context}
             />
           ))}
         </div>
-        <PorductDetail/>
+        <ProductDetail/>
       </Layout>
     </>
   );
