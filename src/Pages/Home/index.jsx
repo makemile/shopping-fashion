@@ -6,7 +6,7 @@ import axios from "axios";
 import { Layout } from "../../components/Layout";
 
 export const Home = () => {
-    const [data, setData] = useState([]);
+  const [data, setData] = useState([]);
   useEffect(() => {
     async function fetchAPI() {
       try {
@@ -25,7 +25,13 @@ export const Home = () => {
       <Layout>
         <div className="grid grid-cols-4 gap-3 w-full max-w-screen-lg">
           {data?.map((item) => (
-            <CardUI key={item.id} item={item} />
+            <CardUI
+              key={item.id}
+              title={item.title}
+              image={item.image}
+              category={item.category}
+              price={item.price}
+            />
           ))}
         </div>
       </Layout>
