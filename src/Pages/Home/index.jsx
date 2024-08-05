@@ -1,9 +1,11 @@
 import "../../App.css";
-import { CardUI } from "../../components/ui/CardUI";
 import { URLAPI } from "../../services/Api";
-import { useEffect, useState } from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import { CardUI } from "../../components/ui/CardUI";
 import { Layout } from "../../components/Layout";
+import { PorductDetail } from "../../components/ProductDetail";
+
 
 export const Home = () => {
   const [data, setData] = useState([]);
@@ -34,6 +36,7 @@ export const Home = () => {
             />
           ))}
         </div>
+        <PorductDetail />
       </Layout>
     </>
   );
