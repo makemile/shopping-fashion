@@ -9,6 +9,7 @@ import { PorductDetail } from "../../components/ProductDetail";
 
 export const Home = () => {
   const [data, setData] = useState([]);
+
   useEffect(() => {
     async function fetchAPI() {
       try {
@@ -36,7 +37,7 @@ export const Home = () => {
             />
           ))}
         </div>
-        <PorductDetail />
+        <PorductDetail/>
       </Layout>
     </>
   );

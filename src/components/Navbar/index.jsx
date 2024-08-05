@@ -1,4 +1,5 @@
 import { ShoppingCartContext } from "../../context";
+import { ShoppingBag } from "../svg/ShoppingBag";
 import { NavItem } from "./Navitem";
 import { useContext } from "react";
 export const Navbar = () => {
@@ -60,8 +61,9 @@ export const Navbar = () => {
             Sign In
           </NavItem>
         </li>
-        <li>{context.count}</li>
+        <li className="flex gap-1"><ShoppingBag fillColor="white"/>{context.count}</li>
       </ul>
     </nav>
   );
 };
+

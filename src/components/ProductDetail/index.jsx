@@ -1,17 +1,22 @@
+import { ShoppingCartContext } from "../../context";
+import { CloseCircle } from "../svg/CloseCircle";
 import "./styles.css";
-export const PorductDetail = ({ shouldShow, onRequestClose, children }) => {
-  return shouldShow ? (
+import { useContext } from "react";
+export const PorductDetail = ({children}) => {
+  const context = useContext(ShoppingCartContext);
+    return  (
     <aside
-      onClick={onRequestClose}
-      className="product-detail flex flex-col fixed right-0 top-14 border border-black rounded-lg bg-white"
+      className={`${context.isProductDetailOpen ? "flex" : "hidden"} product-detail flex-col fixed right-0 top-14 border border-black rounded-lg bg-white`}
     >
       <div className="flex justify-between items-center p-6">
         <h2 className="font-medium text-xl">Detail</h2>
-        <button className="text-xl" onClick={onRequestClose}>
-          x
-        </button>
+       <div className= "cursor-pointer" onClick = {() => context.CloseProductDetail()}>
+       <CloseCircle  className= "text-xl cursor-pointer" fillColor="white"/>
+       </div>
+         
+       
       </div>
       {children}
     </aside>
-  ) : null;
+  );
 };
