@@ -1,5 +1,4 @@
 import { BtnAdd } from "./BtnAdd";
-import { PlusCircle } from "../svg/PlusCircle";
 
 export const CardUI = ({
   title,
@@ -10,9 +9,11 @@ export const CardUI = ({
   showProduct,
   item,
 }) => {
-  const addProductsToCart = (productData) => {
+  const addProductsToCart = (event, productData) => {
+    event.stopPropagation();
     context.setCount(context.count + 1);
     context.setCartProducts([...context.cartProducts, productData]);
+    context.openCheckoutSideMenu();
   };
   return (
     <div
@@ -29,7 +30,7 @@ export const CardUI = ({
           className="w-full h-full object-cover rounded-lg"
         />
         <div>
-          <BtnAdd onClick={() => addProductsToCart(item)}/>
+          <BtnAdd onClick={(event) => addProductsToCart(event, item)} />
         </div>
       </figure>
       <p className="flex justify-between">
