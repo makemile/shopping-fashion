@@ -20,7 +20,8 @@ export const CheckoutSideMenu = () => {
           <CloseCircle className="text-xl cursor-pointer" fillColor="white" />
         </div>
       </div>
-      {context.cartProducts.map((product) => (
+     <div className="overflow-y-auto h-96">
+     {context.cartProducts.map((product) => (
         <OrderCard
           key={product.id}
           title={product.title}
@@ -28,6 +29,7 @@ export const CheckoutSideMenu = () => {
           image={product.image}
         />
       ))}
+     </div>
     </aside>
   );
 };
