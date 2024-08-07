@@ -2,14 +2,18 @@ import { ShoppingCartContext } from "../../context";
 import { OrderCard } from "../OrderCard";
 import { CloseCircle } from "../svg/CloseCircle";
 import { useContext } from "react";
+import { TotalPrice } from "../../utils";
+import "./styles.css";
 
 export const CheckoutSideMenu = () => {
-const context = useContext(ShoppingCartContext);
-const HandleDelete = (id) => {
-const filterProducts = context.cartProducts.filter(product => product.id !== id);
-context.setCartProducts(filterProducts);
-context.setCount(context.count - 1);
-}
+  const context = useContext(ShoppingCartContext);
+  const HandleDelete = (id) => {
+    const filterProducts = context.cartProducts.filter(
+      (product) => product.id !== id
+    );
+    context.setCartProducts(filterProducts);
+    context.setCount(context.count - 1);
+  };
   return (
     <aside
       className={`${
@@ -25,18 +29,24 @@ context.setCount(context.count - 1);
           <CloseCircle className="text-xl cursor-pointer" fillColor="white" />
         </div>
       </div>
-     <div className="overflow-y-auto h-96">
-     {context.cartProducts.map((product) => (
-        <OrderCard
-          key={product.id}
-          id={product.id}
-          title={product.title}
-          price={product.price}
-          images={product.images[0]}
-          HandleDelete = {HandleDelete}
-        />
-      ))}
-     </div>
+      <div className="overflow-y-auto">
+        {context.cartProducts.map((product) => (
+          <OrderCard
+            key={product.id}
+            id={product.id}
+            title={product.title}
+            price={product.price}
+            images={product.images[0]}
+            HandleDelete={HandleDelete}
+          />
+        ))}
+      </div>
+      <div className="px-6 py-6">
+        <p className="flex justify-between">
+          <span className="text-md font-semibold">Total</span>
+          <span className="font-bold">${TotalPrice(context.cartProducts)}</span>
+        </p>
+      </div>
     </aside>
   );
 };
