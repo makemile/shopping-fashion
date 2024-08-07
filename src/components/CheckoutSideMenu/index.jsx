@@ -14,6 +14,16 @@ export const CheckoutSideMenu = () => {
     context.setCartProducts(filterProducts);
     context.setCount(context.count - 1);
   };
+  const HandleCheckout = () => {
+    const orderToAdd = {
+      date: "01.02.23",
+      product: context.cartProducts,
+      count: context.cartProducts.length,
+      price: TotalPrice(context.cartProducts),
+    };
+    context.setOrder([...context.order, orderToAdd]);
+    context.setCartProducts([]);
+  };
   return (
     <aside
       className={`${
@@ -29,7 +39,7 @@ export const CheckoutSideMenu = () => {
           <CloseCircle className="text-xl cursor-pointer" fillColor="white" />
         </div>
       </div>
-      <div className="overflow-y-auto">
+      <div className="overflow-y-auto flex-1">
         {context.cartProducts.map((product) => (
           <OrderCard
             key={product.id}
@@ -46,6 +56,9 @@ export const CheckoutSideMenu = () => {
           <span className="text-md font-semibold">Total</span>
           <span className="font-bold">${TotalPrice(context.cartProducts)}</span>
         </p>
+      </div>
+      <div className=" flex justify-center p-4">
+      <button onClick={() => {HandleCheckout()}} className="bg-black text-md text-white rounded-md w-1/2 p-2">checkout</button>
       </div>
     </aside>
   );
