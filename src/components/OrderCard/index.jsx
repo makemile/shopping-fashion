@@ -1,6 +1,7 @@
-import { DeleteProduct } from "../svg/Trash";
+import { BtnDelete } from "../ui/BtnDelete";
 
-export const OrderCard = ({ title, images, price }) => {
+export const OrderCard = ({ title, images, price, id , HandleDelete}) => {
+  
   return (
     <>
       <div className="flex justify-between items-center p-6 gap-1">
@@ -14,7 +15,7 @@ export const OrderCard = ({ title, images, price }) => {
           <figcaption className="text-xs w-40">{title}</figcaption>
           <h5 className="text-sm font-bold">{price}</h5>
         </figure>
-        <DeleteProduct fillColor="white" />
+        <BtnDelete onClick={() => {HandleDelete(id)}}/>
       </div>
     </>
   );

@@ -4,12 +4,17 @@ import { CloseCircle } from "../svg/CloseCircle";
 import { useContext } from "react";
 
 export const CheckoutSideMenu = () => {
-  const context = useContext(ShoppingCartContext);
+const context = useContext(ShoppingCartContext);
+const HandleDelete = (id) => {
+const filterProducts = context.cartProducts.filter(product => product.id !== id);
+context.setCartProducts(filterProducts);
+context.setCount(context.count - 1);
+}
   return (
     <aside
       className={`${
         context.isCheckoutSideMenuOpen ? "flex" : "hidden"
-      } checkout-side-menu flex-col fixed right-0 top-14 border border-black rounded-lg bg-white`}
+      } checkout-side-menu flex-col fixed right-0 border border-black rounded-lg bg-white`}
     >
       <div className="flex justify-between items-center p-6">
         <h2 className="font-medium text-xl">My Orders</h2>
@@ -24,9 +29,11 @@ export const CheckoutSideMenu = () => {
      {context.cartProducts.map((product) => (
         <OrderCard
           key={product.id}
+          id={product.id}
           title={product.title}
           price={product.price}
           images={product.images[0]}
+          HandleDelete = {HandleDelete}
         />
       ))}
      </div>
