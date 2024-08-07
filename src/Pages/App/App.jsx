@@ -5,6 +5,9 @@ import "../../App.css";
 import { Navbar } from "../../components/Navbar";
 import { CheckoutSideMenu } from "../../components/CheckoutSideMenu";
 
+
+
+
 export const App = () => {
   return (
     <ShoppingCartProvider>

@@ -1,1 +1,1 @@
-export const URLAPI = "https://fakestoreapi.com/products";
+export const URLAPI = "https://api.escuelajs.co/api/v1/products";

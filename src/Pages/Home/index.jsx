@@ -21,8 +21,11 @@ export const Home = () => {
   useEffect(() => {
     async function fetchAPI() {
       try {
-        const response = await axios.get(URLAPI);
+        const response = await axios.get(URLAPI, {
+          mode: 'no-cors'
+        });
         setData(response.data);
+        console.log(response.data)
       } catch (error) {
         console.error(error);
       } finally {
@@ -38,9 +41,10 @@ export const Home = () => {
           {data?.map((item) => (
             <CardUI
               key={item.id}
+              id={item.id}
               title={item.title}
-              image={item.image}
-              category={item.category}
+              images={item.images[0]}
+              category={item.category.name}
               price={item.price}
               showProduct={showProduct}
               item = {item}

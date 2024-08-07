@@ -26,7 +26,7 @@ export const CheckoutSideMenu = () => {
           key={product.id}
           title={product.title}
           price={product.price}
-          image={product.image}
+          images={product.images[0]}
         />
       ))}
      </div>

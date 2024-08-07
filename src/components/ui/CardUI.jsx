@@ -1,13 +1,15 @@
 import { BtnAdd } from "./BtnAdd";
+import { BtnCheck } from "./BtnCheck";
 
 export const CardUI = ({
   title,
-  image,
+  images,
   category,
   price,
   context,
   showProduct,
   item,
+  id,
 }) => {
   const addProductsToCart = (event, productData) => {
     event.stopPropagation();
@@ -15,6 +17,22 @@ export const CardUI = ({
     context.setCartProducts([...context.cartProducts, productData]);
     context.openCheckoutSideMenu();
   };
+
+  const CheckProduct = (id) => {
+    const isCheckProduct =
+      context.cartProducts.filter((product) => product.id === id).length > 0;
+
+    return isCheckProduct ? (
+      <div>
+        <BtnCheck/>
+      </div>
+    ) : (
+      <div>
+        <BtnAdd onClick={(event) => addProductsToCart(event, item)} />
+      </div>
+    );
+  };
+
   return (
     <div
       onClick={() => showProduct(item)}
@@ -25,13 +43,12 @@ export const CardUI = ({
           {title}
         </span>
         <img
-          src={image}
+          src={images}
           alt={title}
           className="w-full h-full object-cover rounded-lg"
+          referrerPolicy="no-referrer"
         />
-        <div>
-          <BtnAdd onClick={(event) => addProductsToCart(event, item)} />
-        </div>
+        {CheckProduct(id)}
       </figure>
       <p className="flex justify-between">
         <span className="text-sm font-light">{category}</span>
