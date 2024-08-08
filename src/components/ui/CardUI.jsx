@@ -49,6 +49,7 @@ export const CardUI = ({
           referrerPolicy="no-referrer"
         />
         {CheckProduct(id)}
+      
       </figure>
       <p className="flex justify-between">
         <span className="text-sm font-light">{category}</span>

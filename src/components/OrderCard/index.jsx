@@ -15,7 +15,10 @@ export const OrderCard = ({ title, images, price, id , HandleDelete}) => {
           <figcaption className="text-xs w-40">{title}</figcaption>
           <h5 className="text-sm font-bold">{price}</h5>
         </figure>
-        <BtnDelete onClick={() => {HandleDelete(id)}}/>
+       {
+        HandleDelete &&
+         <BtnDelete onClick={() => {HandleDelete(id)}}/>
+       }
       </div>
     </>
   );
