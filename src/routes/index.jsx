@@ -28,6 +28,10 @@ export const AppRoutes = () => {
       element: <MyOrder />,
     },
     {
+      path: "/my-orders/:id",
+      element: <MyOrder />,
+    },
+    {
       path: "/electronics",
       element: <SignIn />,
     },

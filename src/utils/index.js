@@ -6,3 +6,5 @@
 
 export const TotalPrice = (products) =>
   products.reduce((sum, product) => sum + product.price, 0);
+
+export const currentDate = () => new Date().toLocaleDateString();
