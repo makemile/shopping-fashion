@@ -12,6 +12,7 @@ export const ShoppingCartProvider = ({ children }) => {
   const [cartProducts, setCartProducts] = useState([]);
   const [order, setOrder] = useState([]);
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [filterItem, setFilterItem] = useState("");
@@ -33,13 +34,14 @@ export const ShoppingCartProvider = ({ children }) => {
 
   useEffect(() => {
     async function fetchAPI() {
+      setLoading(true);
       try {
         const response = await axios.get(URLAPI);
         setData(response.data);
       } catch (error) {
         console.error(error);
       } finally {
-        console.info("finalizado");
+        setLoading(false);
       }
     }
     fetchAPI();
@@ -68,6 +70,7 @@ export const ShoppingCartProvider = ({ children }) => {
         order,
         setOrder,
         data,
+        loading,
         setData,
         search,
         setSearch,

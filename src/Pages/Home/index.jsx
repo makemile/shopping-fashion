@@ -37,6 +37,7 @@ export const Home = () => {
     );
   };
 
+
   return (
     <>
       <Layout>
@@ -45,10 +46,16 @@ export const Home = () => {
           onChange={(e) => context.setSearch(e.target.value)}
           value={context.debouncedSearch}
         />
-        <div className="grid grid-cols-4 gap-3 w-full max-w-screen-lg">
-          {renderView()}
-        </div>
-        <ProductDetail />
+        {context.loading ? (
+          <p>mi loading</p>
+        ) : (
+          <>
+            <div className="grid grid-cols-4 gap-3 w-full max-w-screen-lg">
+              {renderView()}
+            </div>
+            <ProductDetail />
+          </>
+        )}
       </Layout>
     </>
   );
