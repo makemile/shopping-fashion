@@ -1,28 +1,41 @@
 import { createContext, useState, useEffect } from "react";
 import { URLAPI } from "../services/Api";
 import axios from "axios";
-
+import { useDebounce } from "../hooks";
 
 export const ShoppingCartContext = createContext();
 
 export const ShoppingCartProvider = ({ children }) => {
   const [count, setCount] = useState(0);
   const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
-  const openProductDetail = () => setIsProductDetailOpen(true);
-  const CloseProductDetail = () => setIsProductDetailOpen(false);
   const [productToShow, setProductToShow] = useState({});
   const [cartProducts, setCartProducts] = useState([]);
   const [order, setOrder] = useState([]);
   const [data, setData] = useState([]);
+  const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const [filterItem, setFilterItem] = useState("");
+  const debouncedSearch = useDebounce(search, 500);
+
+  useEffect(() => {
+    if (debouncedSearch.length > 0) {
+      setFilterItem(
+        data?.filter((item) =>
+          item.category.name
+            .toLowerCase()
+            .includes(debouncedSearch.toLowerCase())
+        )
+      );
+    } else {
+      setFilterItem(data);
+    }
+  }, [data, debouncedSearch]);
 
   useEffect(() => {
     async function fetchAPI() {
       try {
-        const response = await axios.get(URLAPI, {
-          mode: "no-cors",
-        });
+        const response = await axios.get(URLAPI);
         setData(response.data);
-        console.log(response.data);
       } catch (error) {
         console.error(error);
       } finally {
@@ -32,7 +45,8 @@ export const ShoppingCartProvider = ({ children }) => {
     fetchAPI();
   }, []);
 
-  const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false);
+  const openProductDetail = () => setIsProductDetailOpen(true);
+  const CloseProductDetail = () => setIsProductDetailOpen(false);
   const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true);
   const CloseCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false);
 
@@ -55,6 +69,10 @@ export const ShoppingCartProvider = ({ children }) => {
         setOrder,
         data,
         setData,
+        search,
+        setSearch,
+        filterItem,
+        debouncedSearch,
       }}
     >
       {children}
