@@ -9,38 +9,36 @@ export const Navbar = () => {
     <nav className="flex justify-between items-center fixed z-10 w-full  px-8 text-dm font-light top-0">
       <ul className="flex items-center gap-2">
         <li className="font-semibold text-lg">
-          <NavItem to="/" activeStyle={activeStyle}>
-            Shopi
-          </NavItem>
+          <NavItem to="/">Shopi</NavItem>
         </li>
         <li>
-          <NavItem to="/all" activeStyle={activeStyle}>
+          <NavItem to="/" activeStyle={activeStyle}>
             All
           </NavItem>
         </li>
         <li>
-          <NavItem to="/clothes" activeStyle={activeStyle}>
+          <NavItem to="/Clothes" activeStyle={activeStyle}>
             Clothes
           </NavItem>
         </li>
         <li>
-          <NavItem to="/electronics" activeStyle={activeStyle}>
+          <NavItem to="/Electronics" activeStyle={activeStyle}>
             Electronics
           </NavItem>
         </li>
         <li>
-          <NavItem to="/furniture" activeStyle={activeStyle}>
+          <NavItem to="/Furniture" activeStyle={activeStyle}>
             Furnitures
           </NavItem>
         </li>
         <li>
-          <NavItem to="/toys" activeStyle={activeStyle}>
-            Toys
+          <NavItem to="/Miscellaneous" activeStyle={activeStyle}>
+            Miscellaneous
           </NavItem>
         </li>
         <li>
-          <NavItem to="/others" activeStyle={activeStyle}>
-            Others
+          <NavItem to="/Shoes" activeStyle={activeStyle}>
+            Shoes
           </NavItem>
         </li>
       </ul>
@@ -61,9 +59,11 @@ export const Navbar = () => {
             Sign In
           </NavItem>
         </li>
-        <li className="flex gap-1"><ShoppingBag fillColor="white"/>{context.count}</li>
+        <li className="flex gap-1">
+          <ShoppingBag fillColor="white" />
+          {context.count}
+        </li>
       </ul>
     </nav>
   );
 };
-

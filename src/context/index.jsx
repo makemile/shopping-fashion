@@ -15,7 +15,8 @@ export const ShoppingCartProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false);
   const [search, setSearch] = useState("");
-  const [filterItem, setFilterItem] = useState("");
+  const [filterItem, setFilterItem] = useState(null);
+  console.log(filterItem)
   const debouncedSearch = useDebounce(search, 500);
 
   useEffect(() => {

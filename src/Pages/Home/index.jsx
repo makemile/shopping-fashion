@@ -5,9 +5,11 @@ import { ProductDetail } from "../../components/ProductDetail";
 import { ShoppingCartContext } from "../../context";
 import { useContext } from "react";
 import { CustomInput } from "../../components/ui/Input";
+import { useParams } from "react-router-dom";
 
 export const Home = () => {
   const context = useContext(ShoppingCartContext);
+  const { category } = useParams();
 
   const showProduct = (productDetail) => {
     context.openProductDetail();
@@ -15,11 +17,30 @@ export const Home = () => {
   };
 
   const renderView = () => {
-    const itemsToRender =
-      context.debouncedSearch?.length > 0 ? context.filterItem : context.data;
+    if (category !== undefined) {
+      const filtered = context.filterItem?.filter((item) =>
+        item.category.name.toLowerCase().includes(category.toLowerCase())
+      );
 
-    return itemsToRender?.length > 0 ? (
-      itemsToRender.map((item) => (
+      if (filtered.length) {
+        return filtered.map((item) => (
+          <CardUI
+            key={item.id}
+            id={item.id}
+            title={item.title}
+            images={item.images[0]}
+            category={item.category.name}
+            price={item.price}
+            showProduct={showProduct}
+            item={item}
+            context={context}
+          />
+        ));
+      } else {
+        return <div>There are nothing to see</div>;
+      }
+    } else {
+      return context.filterItem?.map((item) => (
         <CardUI
           key={item.id}
           id={item.id}
@@ -31,12 +52,9 @@ export const Home = () => {
           item={item}
           context={context}
         />
-      ))
-    ) : (
-      <p>No Results Found</p>
-    );
+      ));
+    }
   };
-
 
   return (
     <>

@@ -11,6 +11,7 @@ export const AppRoutes = () => {
       path: "/",
       element: <Home />,
     },
+    { path: "/:category", element: <Home /> },
     {
       path: "/my-account",
       element: <MyAccount />,
@@ -32,7 +33,7 @@ export const AppRoutes = () => {
       element: <MyOrder />,
     },
     {
-      path: "/electronics",
+      path: "/SignIn",
       element: <SignIn />,
     },
   ]);
