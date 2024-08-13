@@ -9,9 +9,9 @@ export const ProductDetail = () => {
     <aside
       className={`${
         context.isProductDetailOpen ? "flex" : "hidden"
-      } product-detail flex-col fixed right-0 top-14 border border-black rounded-lg bg-white`}
+      } product-detail flex-col fixed top-14 border border-black rounded-lg bg-white place-content-evenly gap-4 py-4`}
     >
-      <div className="flex justify-between items-center p-6">
+      <div className="flex justify-between items-center px-12">
         <h2 className="font-medium text-xl">Detail</h2>
         <div
           className="cursor-pointer"
@@ -20,15 +20,28 @@ export const ProductDetail = () => {
           <CloseCircle className="text-xl cursor-pointer" fillColor="white" />
         </div>
       </div>
-      <figure className="flex justify-around items-center">
-        <img
-        className="w-10 h-10 overflow-auto rounded-lg"
-          src={context.productToShow.image}
-          alt={context.productToShow.title}
-        />
-        <figcaption className="text-xs w-40">{context.productToShow.title}</figcaption>
-        <h5 className="text-sm font-bold">{context.productToShow.price}</h5>
+      <figure className="flex grid-flow-col p-2 place-content-evenly">
+        {context.productToShow.images && (
+          <img
+            className="w-90 h-80  rounded-lg cursor-zoom-in"
+            src={context.productToShow.images[0]}
+            alt={context.productToShow.title}
+          />
+        )}
+
+        <figcaption className="w-48 row-auto">
+          <h1  className="font-semibold text-lg font-sans">{context.productToShow.title}</h1>
+          <h5 className="text-lg font-medium py-4">${context.productToShow.price}</h5>
+          {context.productToShow.category && (
+            <h5 className="text-sm font-medium py-4 font-sans">
+              Category: {context.productToShow.category.name}
+            </h5>
+          )}
+        </figcaption>
       </figure>
+      <article className="text-wrap py-1 px-12"><h3 className="font-semibold">Description</h3>
+      <p className="font-sans text-sm">{context.productToShow.description}</p>
+      </article>
     </aside>
   );
 };

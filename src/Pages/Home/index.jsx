@@ -14,6 +14,7 @@ export const Home = () => {
   const showProduct = (productDetail) => {
     context.openProductDetail();
     context.setProductToShow(productDetail);
+    console.log(productDetail)
   };
 
   const renderView = () => {
@@ -22,7 +23,7 @@ export const Home = () => {
         item.category.name.toLowerCase().includes(category.toLowerCase())
       );
 
-      if (filtered.length) {
+      if (filtered?.length) {
         return filtered.map((item) => (
           <CardUI
             key={item.id}
