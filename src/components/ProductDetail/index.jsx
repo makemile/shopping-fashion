@@ -9,10 +9,9 @@ export const ProductDetail = () => {
     <aside
       className={`${
         context.isProductDetailOpen ? "flex" : "hidden"
-      } product-detail flex-col fixed top-14 border border-black rounded-lg bg-white place-content-evenly gap-4 py-4`}
+      } product-detail flex-col fixed top-14 border rounded-lg bg-white place-content-evenly gap-4 py-4 `}
     >
-      <div className="flex justify-between items-center px-12">
-        <h2 className="font-medium text-xl">Detail</h2>
+      <div className="flex justify-end items-center px-12">
         <div
           className="cursor-pointer"
           onClick={() => context.CloseProductDetail()}
@@ -30,8 +29,12 @@ export const ProductDetail = () => {
         )}
 
         <figcaption className="w-48 row-auto">
-          <h1  className="font-semibold text-lg font-sans">{context.productToShow.title}</h1>
-          <h5 className="text-lg font-medium py-4">${context.productToShow.price}</h5>
+          <h1 className="font-semibold text-lg font-sans">
+            {context.productToShow.title}
+          </h1>
+          <h5 className="text-lg font-medium py-4">
+            ${context.productToShow.price}
+          </h5>
           {context.productToShow.category && (
             <h5 className="text-sm font-medium py-4 font-sans">
               Category: {context.productToShow.category.name}
@@ -39,8 +42,9 @@ export const ProductDetail = () => {
           )}
         </figcaption>
       </figure>
-      <article className="text-wrap py-1 px-12"><h3 className="font-semibold">Description</h3>
-      <p className="font-sans text-sm">{context.productToShow.description}</p>
+      <article className="text-wrap py-1 px-12">
+        <h3 className="font-medium">DESCRIPTION</h3>
+        <p className="font-sans text-sm">{context.productToShow.description}</p>
       </article>
     </aside>
   );
