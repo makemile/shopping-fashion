@@ -6,7 +6,8 @@ export const Navbar = () => {
   const context = useContext(ShoppingCartContext);
   const activeStyle = "underline underline-offset-4";
   return (
-    <nav className="flex justify-between items-center fixed z-10 w-full  px-8 text-dm font-light top-0">
+    <nav className="flex justify-between items-center bg-black
+     fixed z-10 w-full h-16  px-16 text-dm font-light top-0 text-white">
       <ul className="flex items-center gap-2">
         <li className="font-semibold text-lg">
           <NavItem to="/">Shopi</NavItem>

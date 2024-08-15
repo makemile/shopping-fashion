@@ -4,7 +4,7 @@ export const BtnCheck = () => {
     return (
       <button
         type="button"
-        className="absolute top-60 right-0 flex justify-center items-center w-56 h-8 text-white  bg-black gap-2 rounded"
+        className="flex justify-center items-center btn-w h-10 text-white  bg-black gap-1 rounded-b-lg"
       >
       
         <CheckCircle fillColor="transparent"/>

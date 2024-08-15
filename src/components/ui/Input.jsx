@@ -7,7 +7,7 @@ export const CustomInput = ({...props}) => {
         onChange={props.onChange}
         value={props.value}
         placeholder="Search product exclusive"
-        className="p-2.5 rounded-full w-80 border border-slate-500 focus:outline-none"
+        className="p-2.5 rounded-full w-96 border border-slate-600 focus:outline-none"
       />
     </div>
   );

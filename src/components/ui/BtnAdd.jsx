@@ -1,11 +1,12 @@
 import { PlusCircle } from "../svg/PlusCircle";
+import "../ui/index.css"
 
 export const BtnAdd = ({ onClick }) => {
   return (
     <button
       type="button"
       onClick={onClick}
-      className="absolute top-60 right-0 flex justify-center items-center w-56 h-8 text-white  bg-black gap-1 rounded"
+      className="flex justify-center items-center btn-w h-10 text-white  bg-black gap-1 rounded-b-lg"
     >
       <PlusCircle fillColor="transparent" />
       Add To Cart
