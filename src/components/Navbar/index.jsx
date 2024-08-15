@@ -61,7 +61,7 @@ export const Navbar = () => {
           </NavItem>
         </li>
         <li className="flex gap-1">
-          <ShoppingBag fillColor="white" />
+          <ShoppingBag fillColor="transparent" />
           {context.count}
         </li>
       </ul>
