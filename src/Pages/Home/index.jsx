@@ -14,7 +14,7 @@ export const Home = () => {
   const showProduct = (productDetail) => {
     context.openProductDetail();
     context.setProductToShow(productDetail);
-    console.log(productDetail)
+    console.log(productDetail);
   };
 
   const renderView = () => {

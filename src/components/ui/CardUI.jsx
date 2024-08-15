@@ -20,18 +20,14 @@ export const CardUI = ({
   };
 
   const CheckProduct = (id) => {
-    return context.cartProducts.filter((product) => product.id === id).length > 0;
-
-   
-  }
+    return (
+      context.cartProducts.filter((product) => product.id === id).length > 0
+    );
+  };
 
   const favoriteProduct = () => {
-    return(
-     
-       <BtnFavorite />
- 
-    )
-   }
+    return <BtnFavorite />;
+  };
 
   return (
     <div
@@ -48,25 +44,23 @@ export const CardUI = ({
           className="w-full h-auto object-cover rounded-t-lg"
           referrerPolicy="no-referrer"
         />
-       { CheckProduct(id)}
+        {CheckProduct(id)}
         {favoriteProduct()}
-      
       </figure>
-      <p className="flex justify-between px-1 items-center">
+      <p className="flex justify-between px-2 items-center">
         <span className="text-sm font-light">{category}</span>
         <span className="text-lg font-semibold">${price}</span>
       </p>
-      {
-        CheckProduct(id) ? (
-          <div className="flex justify-center">
-            <BtnCheck/>
-          </div>
-        ) : (
-          <div className="flex justify-center">
-            <BtnAdd onClick={(event) => addProductsToCart(event, item)} />
-          </div>
-        )
-      }
+
+      {CheckProduct(id) ? (
+        <div className="flex justify-center pb-3">
+          <BtnCheck />
+        </div>
+      ) : (
+        <div className="flex justify-center pb-3">
+          <BtnAdd onClick={(event) => addProductsToCart(event, item)} />
+        </div>
+      )}
     </div>
   );
 };

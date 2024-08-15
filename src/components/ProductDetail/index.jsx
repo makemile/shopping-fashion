@@ -9,9 +9,9 @@ export const ProductDetail = () => {
     <aside
       className={`${
         context.isProductDetailOpen ? "flex" : "hidden"
-      } product-detail flex-col fixed top-14 border rounded-lg bg-white place-content-evenly gap-4 py-4 `}
+      } product-detail flex-col fixed top-20 border rounded-lg bg-white place-content-evenly gap-4 py-4 `}
     >
-      <div className="flex justify-end items-center px-12">
+      <div className="flex justify-end items-center px-7">
         <div
           className="cursor-pointer"
           onClick={() => context.CloseProductDetail()}
