@@ -69,7 +69,7 @@ export const Home = () => {
           <p>mi loading</p>
         ) : (
           <>
-            <div className="grid grid-cols-4 gap-3 w-full max-w-screen-lg">
+            <div className="grid grid-cols-4 gap-7 w-full max-w-screen-lg">
               {renderView()}
             </div>
             <ProductDetail />

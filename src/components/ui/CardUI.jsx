@@ -1,5 +1,6 @@
 import { BtnAdd } from "./BtnAdd";
 import { BtnCheck } from "./BtnCheck";
+import { BtnFavorite } from "./BtnFavorite";
 
 export const CardUI = ({
   title,
@@ -33,22 +34,31 @@ export const CardUI = ({
     );
   };
 
+  const favoriteProduct = () => {
+   return(
+    
+      <BtnFavorite />
+
+   )
+  }
+
   return (
     <div
       onClick={() => showProduct(item)}
-      className="bg-white cursor-pointer w-56 h-60 rounded-lg"
+      className="bg-white cursor-pointer w-56 h-auto rounded-t-lg border border-slate-300"
     >
-      <figure className="relative mb-2 w-full h-4/5">
+      <figure className="relative mb-1 w-full h-4/5">
         <span className="absolute bottom-0 left-0 bg-white/60 rounded-lg text-black text-xs m-2 px-3 py-0.5">
           {title}
         </span>
         <img
           src={images}
           alt={title}
-          className="w-full h-full object-cover rounded-lg"
+          className="w-full h-full object-cover rounded-t-lg"
           referrerPolicy="no-referrer"
         />
         {CheckProduct(id)}
+        {favoriteProduct()}
       
       </figure>
       <p className="flex justify-between">
