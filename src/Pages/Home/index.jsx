@@ -6,6 +6,7 @@ import { ShoppingCartContext } from "../../context";
 import { useContext } from "react";
 import { CustomInput } from "../../components/ui/Input";
 import { useParams } from "react-router-dom";
+import { Loading } from "../../components/ui/skeleton-loader";
 
 export const Home = () => {
   const context = useContext(ShoppingCartContext);
@@ -66,7 +67,7 @@ export const Home = () => {
           value={context.debouncedSearch}
         />
         {context.loading ? (
-          <p>mi loading</p>
+          <Loading/>
         ) : (
           <>
             <div className="grid grid-cols-3 gap-7 w-auto max-w-screen-lg items-center">
