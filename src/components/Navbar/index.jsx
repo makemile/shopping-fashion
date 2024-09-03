@@ -60,7 +60,7 @@ export const Navbar = () => {
           </NavItem>
         </li>
         <li>
-          <NavItem to="/sign-in" activeStyle={activeStyle}>
+          <NavItem to="/SignIn" activeStyle={activeStyle}>
             Sign In
           </NavItem>
         </li>
