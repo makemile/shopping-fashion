@@ -4,6 +4,10 @@ import { NavItem } from "./Navitem";
 import { useContext } from "react";
 export const Navbar = () => {
   const context = useContext(ShoppingCartContext);
+  const openCart = (event) => {
+    event.stopPropagation();
+    context.openCheckoutSideMenu();
+  }
   const activeStyle = "underline underline-offset-4";
   return (
     <nav className="flex justify-between items-center bg-black
@@ -60,7 +64,7 @@ export const Navbar = () => {
             Sign In
           </NavItem>
         </li>
-        <li className="flex gap-1">
+        <li className="flex gap-1 cursor-pointer" onClick={(event) => openCart(event)}>
           <ShoppingBag fillColor="transparent" />
           {context.count}
         </li>
