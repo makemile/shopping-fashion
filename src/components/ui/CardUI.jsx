@@ -1,6 +1,7 @@
 import { BtnAdd } from "./BtnAdd";
 import { BtnCheck } from "./BtnCheck";
 import { BtnFavorite } from "./BtnFavorite";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export const CardUI = ({
   title,
@@ -38,7 +39,7 @@ export const CardUI = ({
         <span className="absolute bottom-0 left-0 backdrop-blur-sm bg-white/30 rounded-lg text-black/80 text-xs m-2 px-3 py-0.5 font-medium">
           {title}
         </span>
-        <img
+        <LazyLoadImage
           src={images}
           alt={title}
           className="w-full h-auto object-cover rounded-t-lg"
