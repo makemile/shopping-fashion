@@ -12,7 +12,7 @@ export const Navbar = () => {
   return (
     <nav className="flex justify-between items-center bg-black
      fixed z-10 w-full h-16  px-16 text-dm font-light top-0 text-white">
-      <ul className="flex items-center gap-2">
+      <ul className="flex items-center gap-4">
         <li className="font-semibold text-lg">
           <NavItem to="/">Shopi</NavItem>
         </li>
@@ -47,7 +47,7 @@ export const Navbar = () => {
           </NavItem>
         </li>
       </ul>
-      <ul className="flex items-center gap-2">
+      <ul className="flex items-center gap-4">
         <li className="text-black/60">luis@gmail.com</li>
         <li>
           <NavItem to="/my-orders" activeStyle={activeStyle}>
