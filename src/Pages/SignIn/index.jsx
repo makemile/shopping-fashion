@@ -45,7 +45,7 @@ export const SignIn = () => {
               </div>
             </div>
 
-            <div>
+            <div className="flex justify-center">
               <BtnForm type="submit">Sign in</BtnForm>
             </div>
           </form>
