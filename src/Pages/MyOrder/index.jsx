@@ -13,14 +13,18 @@ export const MyOrder = () => {
 
   return (
     <Layout>
-      <div className="flex justify-between items-center w-60">
+      <div className="flex justify-between items-start max-w-full gap-2">
         <Link to={"/my-orders"} className="cursor-pointer">
           <ArrowLeft fillcolor="transparent" />
         </Link>
-        My Orders
-        <div></div>
+       <div className="">
+       <h3 className="text-2xl">Your Orders</h3> 
+        
+        <p>Check the status of recent orders, manage returns, and
+        discover similar products.</p>
+       </div>
       </div>
-      <div className="flex flex-col w-80">
+      <div className="flex flex-col max-w-full">
         {context.order?.[index]?.product.map((product) => (
           <OrderCard
             key={product.id}
