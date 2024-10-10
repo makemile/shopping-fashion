@@ -3,7 +3,7 @@ import { Home } from "../Pages/Home";
 import { MyAccount } from "../Pages/MyAccount";
 import { MyOrder } from "../Pages/MyOrder";
 import { MyOrders } from "../Pages/MyOrders";
-import { SignIn } from "../Pages/SignIn";
+import { SignIn } from "../components/Forms/SignIn";
 
 export const AppRoutes = () => {
   let routes = useRoutes([
