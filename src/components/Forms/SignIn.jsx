@@ -1,24 +1,17 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { ref } from "../ui/InputForm.jsx";
 import { Layout } from "../Layout/index.jsx";
 import { BtnForm, InputForm, LabelForm } from "../ui/index.js";
+import { refBtn } from "../ui/BtnForm.jsx";
 
 export const SignIn = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const handlEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
-
-  const handlePassword = (event) => {
-    setPassword(event.target.value);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("Name:", email);
-    console.log("pass:", password);
-  };
+  const onSubmit = (data) => console.log(data);
 
   return (
     <Layout>
@@ -30,29 +23,33 @@ export const SignIn = () => {
         </div>
 
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-3" onSubmit={handleSubmit}>
-            <LabelForm htmlFor="email">Email address</LabelForm>
+          <form className="space-y-3" onSubmit={handleSubmit(onSubmit)}>
+            <LabelForm htmlFor="email">email</LabelForm>
             <div className="mt-2">
               <InputForm
                 type="email"
-                value={email}
+                id="email"
+                ref={ref}
+                {...register("email", { required: "email is required" })}
+                autoComplete="on"
                 placeholder="insert to email"
-                onChange={handlEmailChange}
-                required
               />
+              {errors?.email?.message}
             </div>
 
             <div className="flex items-center justify-between">
-              <LabelForm htmlFor="password">Password</LabelForm>
+              <LabelForm htmlFor="password">password</LabelForm>
             </div>
             <div className="mt-2">
               <InputForm
                 type="password"
-                value={password}
+                id="password"
+                ref={ref}
+                {...register("password", { required: "password is required" })}
+                autoComplete="on"
                 placeholder="insert to password"
-                onChange={handlePassword}
-                required
               />
+              {errors?.password?.message}
             </div>
             <div className="text-sm flex justify-end">
               <a className="font-semibold text-black hover:text-slate-400">
@@ -61,7 +58,9 @@ export const SignIn = () => {
             </div>
 
             <div className="flex justify-center">
-              <BtnForm type="submit">Login</BtnForm>
+              <BtnForm ref={refBtn} type="submit">
+                Login
+              </BtnForm>
             </div>
           </form>
         </div>
