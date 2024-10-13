@@ -7,6 +7,8 @@ export const ShoppingCartContext = createContext();
 
 export const ShoppingCartProvider = ({ children }) => {
   const [count, setCount] = useState(0);
+  const [account, setAccount] = useState({});
+  const [signOut, setSignOut] = useState(false);
   const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
   const [productToShow, setProductToShow] = useState({});
   const [cartProducts, setCartProducts] = useState([]);
@@ -17,6 +19,9 @@ export const ShoppingCartProvider = ({ children }) => {
   const [search, setSearch] = useState("");
   const [filterItem, setFilterItem] = useState(null);
   const debouncedSearch = useDebounce(search, 500);
+ 
+ 
+  
 
   useEffect(() => {
     if (debouncedSearch.length > 0) {
@@ -52,6 +57,7 @@ export const ShoppingCartProvider = ({ children }) => {
   const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true);
   const CloseCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false);
 
+
   return (
     <ShoppingCartContext.Provider
       value={{
@@ -76,6 +82,10 @@ export const ShoppingCartProvider = ({ children }) => {
         setSearch,
         filterItem,
         debouncedSearch,
+        account, 
+        setAccount,
+        signOut, 
+        setSignOut
       }}
     >
       {children}
