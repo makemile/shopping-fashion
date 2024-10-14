@@ -4,8 +4,12 @@ import { MyAccount } from "../Pages/MyAccount";
 import { MyOrder } from "../Pages/MyOrder";
 import { MyOrders } from "../Pages/MyOrders";
 import { SignIn } from "../Pages/SignIn/SignIn";
+import { useContext } from "react";
+import { ShoppingCartContext } from "../context";
 
 export const AppRoutes = () => {
+  const context = useContext(ShoppingCartContext);
+  console.log(context.signOut);
   let routes = useRoutes([
     {
       path: "/",
@@ -14,23 +18,23 @@ export const AppRoutes = () => {
     { path: "/:category", element: <Home /> },
     {
       path: "/my-account",
-      element: <MyAccount />,
+      element: context.signOut ? <SignIn /> : <MyAccount />,
     },
     {
       path: "/my-order",
-      element: <MyOrder />,
+      element: context.signOut ? <SignIn /> : <MyOrder />,
     },
     {
       path: "/my-orders",
-      element: <MyOrders />,
+      element: context.signOut ? <SignIn /> : <MyOrders />,
     },
     {
       path: "/my-orders/last",
-      element: <MyOrder />,
+      element: context.signOut ? <SignIn /> : <MyOrder />,
     },
     {
       path: "/my-orders/:id",
-      element: <MyOrder />,
+      element: context.signOut ? <SignIn /> :  <MyOrder />,
     },
     {
       path: "/sign-in",

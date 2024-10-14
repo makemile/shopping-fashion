@@ -11,8 +11,8 @@ export const MyOrders = () => {
   return (
     <Layout>
       {context.order?.map((order,index) => (
-        <Link to={`/my-orders/${index}`}>
-          <OrdersCard key={index} count={order.count} price={order.price} />
+        <Link key={index} to={`/my-orders/${index}`}>
+          <OrdersCard count={order.count} price={order.price} />
         </Link>
       ))}
     </Layout>

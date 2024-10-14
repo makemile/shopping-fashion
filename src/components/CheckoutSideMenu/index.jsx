@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import { ShoppingCartContext } from "../../context";
 import { OrderCard } from "../OrderCard";
 import { CloseCircle } from "../svg/CloseCircle";
@@ -16,15 +16,16 @@ export const CheckoutSideMenu = () => {
     context.setCount(context.count - 1);
   };
   const HandleCheckout = () => {
-    const orderToAdd = {
-      date: "01.02.23",
-      product: context.cartProducts,
-      count: context.cartProducts.length,
-      price: TotalPrice(context.cartProducts),
-    };
-    context.setOrder([...context.order, orderToAdd]);
-    context.setCartProducts([]);
+      const orderToAdd = {
+        date: "01.02.23",
+        product: context.cartProducts,
+        count: context.cartProducts.length,
+        price: TotalPrice(context.cartProducts),
+      };
+      context.setOrder([...context.order, orderToAdd]);
+      context.setCartProducts([]);
   };
+  
   return (
     <aside
     className={`${
@@ -60,9 +61,9 @@ export const CheckoutSideMenu = () => {
         </p>
       </div>
     
-     <Link to="/my-orders/last" className="flex justify-center p-4">
+     <NavLink  to={ context.signOut ? console.info('logueate por fa') : "/my-orders/last"} className="flex justify-center p-4">
      <button onClick={() => {HandleCheckout()}} className="bg-black text-md text-white rounded-md w-1/2 p-2">checkout</button>
-     </Link>
+     </NavLink>
       
     </aside>
   );
