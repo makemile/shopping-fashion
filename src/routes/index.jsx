@@ -3,7 +3,7 @@ import { Home } from "../Pages/Home";
 import { MyAccount } from "../Pages/MyAccount";
 import { MyOrder } from "../Pages/MyOrder";
 import { MyOrders } from "../Pages/MyOrders";
-import { SignIn } from "../components/Forms/SignIn";
+import { SignIn } from "../Pages/SignIn/SignIn";
 
 export const AppRoutes = () => {
   let routes = useRoutes([
@@ -33,8 +33,8 @@ export const AppRoutes = () => {
       element: <MyOrder />,
     },
     {
-      path: "/SignIn",
-      element: <SignIn />,
+      path: "/sign-in",
+      element: <SignIn/>,
     },
   ]);
   return routes;

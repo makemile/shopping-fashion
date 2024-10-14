@@ -2,13 +2,16 @@ import { createContext, useState, useEffect } from "react";
 import { URLAPI } from "../services/Api";
 import axios from "axios";
 import { useDebounce } from "../hooks";
+import { initializeLocalStorage } from "../utils/localStorageUtils";
 
 export const ShoppingCartContext = createContext();
-
+initializeLocalStorage();
 export const ShoppingCartProvider = ({ children }) => {
   const [count, setCount] = useState(0);
+
   const [account, setAccount] = useState({});
   const [signOut, setSignOut] = useState(false);
+
   const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
   const [productToShow, setProductToShow] = useState({});
   const [cartProducts, setCartProducts] = useState([]);
