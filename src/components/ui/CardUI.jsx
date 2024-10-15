@@ -13,6 +13,7 @@ export const CardUI = ({
   id,
 }) => {
   const addProductsToCart = (event, productData) => {
+    event.preventDefault(); 
     event.stopPropagation();
     context.setCount(context.count + 1);
     context.setCartProducts([...context.cartProducts, productData]);
@@ -60,7 +61,7 @@ export const CardUI = ({
         </div>
       ) : (
         <div className="flex justify-center pb-3">
-          <BtnAdd onClick={(event) => addProductsToCart(event, item)} />
+          <BtnAdd onClick={(event) => {addProductsToCart(event,item)}} />
         </div>
       )}
     </div>

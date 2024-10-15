@@ -130,6 +130,7 @@ export const SignIn = () => {
                 type="email"
                 id="email"
                 ref={ref}
+                defaultValue={parsedAccount.email}
                 // {...register("email", { required: "email is required" })}
                 autoComplete="on"
                 placeholder="insert to email"
@@ -145,6 +146,7 @@ export const SignIn = () => {
                 type="password"
                 id="password"
                 ref={ref}
+                defaultValue={parsedAccount.password}
                 // {...register("password", { required: "password is required" })}
                 autoComplete="on"
                 placeholder="insert to password"

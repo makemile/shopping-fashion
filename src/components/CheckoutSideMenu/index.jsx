@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import {Link, NavLink} from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { ShoppingCartContext } from "../../context";
 import { OrderCard } from "../OrderCard";
 import { CloseCircle } from "../svg/CloseCircle";
@@ -16,22 +16,21 @@ export const CheckoutSideMenu = () => {
     context.setCount(context.count - 1);
   };
   const HandleCheckout = () => {
-      const orderToAdd = {
-        date: "01.02.23",
-        product: context.cartProducts,
-        count: context.cartProducts.length,
-        price: TotalPrice(context.cartProducts),
-      };
-      context.setOrder([...context.order, orderToAdd]);
-      context.setCartProducts([]);
+    const orderToAdd = {
+      date: "01.02.23",
+      product: context.cartProducts,
+      count: context.cartProducts.length,
+      price: TotalPrice(context.cartProducts),
+    };
+    context.setOrder([...context.order, orderToAdd]);
+    context.setCartProducts([]);
   };
-  
+
   return (
     <aside
-    className={`${
-      context.isCheckoutSideMenuOpen ? "flex" : "hidden"
-    } checkout-side-menu flex-col fixed right-0 top-16 border border-black rounded-lg bg-white`}
-  
+      className={`${
+        context.isCheckoutSideMenuOpen ? "flex" : "hidden"
+      } checkout-side-menu flex-col fixed right-0 top-16 border border-black rounded-lg bg-white`}
     >
       <div className="flex justify-between items-center p-6">
         <h2 className="font-medium text-xl">My Orders</h2>
@@ -60,11 +59,24 @@ export const CheckoutSideMenu = () => {
           <span className="font-bold">${TotalPrice(context.cartProducts)}</span>
         </p>
       </div>
-    
-     <NavLink  to={ context.signOut ? console.info('logueate por fa') : "/my-orders/last"} className="flex justify-center p-4">
-     <button onClick={() => {HandleCheckout()}} className="bg-black text-md text-white rounded-md w-1/2 p-2">checkout</button>
-     </NavLink>
-      
+      {context.signOut ? (
+        <NavLink to={"sign-in"} className="flex justify-center p-4">
+          <button className="bg-black text-md text-white rounded-md w-1/2 p-2">
+            Please Login
+          </button>
+        </NavLink>
+      ) : (
+        <NavLink to={"/my-orders/last"} className="flex justify-center p-4">
+          <button
+            onClick={() => {
+              HandleCheckout();
+            }}
+            className="bg-black text-md text-white rounded-md w-1/2 p-2"
+          >
+            checkout
+          </button>
+        </NavLink>
+      )}
     </aside>
   );
 };

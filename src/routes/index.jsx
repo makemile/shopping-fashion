@@ -9,7 +9,6 @@ import { ShoppingCartContext } from "../context";
 
 export const AppRoutes = () => {
   const context = useContext(ShoppingCartContext);
-  console.log(context.signOut);
   let routes = useRoutes([
     {
       path: "/",
@@ -34,11 +33,11 @@ export const AppRoutes = () => {
     },
     {
       path: "/my-orders/:id",
-      element: context.signOut ? <SignIn /> :  <MyOrder />,
+      element: context.signOut ? <SignIn /> : <MyOrder />,
     },
     {
       path: "/sign-in",
-      element: <SignIn/>,
+      element: <SignIn />,
     },
   ]);
   return routes;

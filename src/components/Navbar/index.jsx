@@ -7,6 +7,7 @@ export const Navbar = () => {
   const context = useContext(ShoppingCartContext);
   const openCart = (event) => {
     event.stopPropagation();
+    event.preventDefault();
     context.openCheckoutSideMenu();
   };
 
@@ -18,6 +19,7 @@ export const Navbar = () => {
     const stringifiedSignOut = JSON.stringify(true);
     localStorage.setItem('sign-out', stringifiedSignOut);
     context.setSignOut(true);
+    console.log('hola')
   };
 
   const getNavLinkStyle = ({isActive}) =>  isActive ? { textDecoration: 'underline', textUnderlineOffset: '4px' } : {}
