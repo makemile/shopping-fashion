@@ -9,7 +9,6 @@ export const Navbar = () => {
     event.stopPropagation();
     context.openCheckoutSideMenu();
   };
-  const activeStyle = "underline underline-offset-4";
 
   const signOut = localStorage.getItem('sign-out');
   const parsedSignOut = JSON.parse(signOut);
@@ -21,14 +20,16 @@ export const Navbar = () => {
     context.setSignOut(true);
   };
 
+  const getNavLinkStyle = ({isActive}) =>  isActive ? { textDecoration: 'underline', textUnderlineOffset: '4px' } : {}
+
   const renderView = () => {
     if (isUserSignOut) {
       return (
         <li>
           <NavLink
             to='/sign-in'
-            activeStyle={activeStyle}
             onClick={() => handleSignOut()}
+            style = {getNavLinkStyle}
           >
             Sign out
           </NavLink>
@@ -39,19 +40,19 @@ export const Navbar = () => {
         <>
           <li className="text-black/60">luis@gmail.com</li>
           <li>
-            <NavLink to="/my-orders" activeStyle={activeStyle}>
+            <NavLink to="/my-orders" style = {getNavLinkStyle}>
               My Orders
             </NavLink>
           </li>
           <li>
-            <NavLink to="my-account" activeStyle={activeStyle}>
+            <NavLink to="my-account" style = {getNavLinkStyle}>
               My Account
             </NavLink>
           </li>
           <li>
             <NavLink
               to='/sign-in'
-              activeStyle={activeStyle}
+              style = {getNavLinkStyle}
               onClick={() => handleSignOut()}
             >
               Sign out
@@ -72,32 +73,32 @@ export const Navbar = () => {
           <NavLink to="/">Shopi</NavLink>
         </li>
         <li>
-          <NavLink to="/" activeStyle={activeStyle}>
+          <NavLink to="/" style = {getNavLinkStyle}>
             All
           </NavLink>
         </li>
         <li>
-          <NavLink to="/Clothes" activeStyle={activeStyle}>
+          <NavLink to="/Clothes" style = {getNavLinkStyle}>
             Clothes
           </NavLink>
         </li>
         <li>
-          <NavLink to="/Electronics" activeStyle={activeStyle}>
+          <NavLink to="/Electronics" style = {getNavLinkStyle}>
             Electronics
           </NavLink>
         </li>
         <li>
-          <NavLink to="/Furniture" activeStyle={activeStyle}>
+          <NavLink to="/Furniture" style = {getNavLinkStyle}>
             Furnitures
           </NavLink>
         </li>
         <li>
-          <NavLink to="/Miscellaneous" activeStyle={activeStyle}>
+          <NavLink to="/Miscellaneous" style = {getNavLinkStyle}>
             Miscellaneous
           </NavLink>
         </li>
         <li>
-          <NavLink to="/Shoes" activeStyle={activeStyle}>
+          <NavLink to="/Shoes" style = {getNavLinkStyle}>
             Shoes
           </NavLink>
         </li>

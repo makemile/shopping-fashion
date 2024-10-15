@@ -9,6 +9,7 @@ import { Navigate } from "react-router-dom";
 
 export const SignIn = () => {
   const context = useContext(ShoppingCartContext);
+  const [redirectToHome, setRedirectToHome] = useState(false);
   const [view, setView] = useState("user-info");
 
   const {
@@ -33,9 +34,12 @@ export const SignIn = () => {
     const stringifiedSignOut = JSON.stringify(false);
     localStorage.setItem("sign-out", stringifiedSignOut);
     context.setSignOut(false);
-
-    return <Navigate replace to={"/"} />;
+    setRedirectToHome(true);
   };
+
+  if (redirectToHome) {
+    return <Navigate replace to={"/"} />;
+  }
 
   const renderCreateUserInfo = () => {
     const onSubmit = (data) => {
