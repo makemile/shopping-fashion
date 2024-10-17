@@ -19,7 +19,6 @@ export const Navbar = () => {
     const stringifiedSignOut = JSON.stringify(true);
     localStorage.setItem('sign-out', stringifiedSignOut);
     context.setSignOut(true);
-    console.log('hola')
   };
 
   const getNavLinkStyle = ({isActive}) =>  isActive ? { textDecoration: 'underline', textUnderlineOffset: '4px' } : {}

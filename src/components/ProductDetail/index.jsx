@@ -1,5 +1,6 @@
 import { ShoppingCartContext } from "../../context";
 import { CloseCircle } from "../svg/CloseCircle";
+import {ArrowLeft} from "../svg/ArrowLeft"
 import "./styles.css";
 import { useContext } from "react";
 export const ProductDetail = () => {
@@ -11,15 +12,17 @@ export const ProductDetail = () => {
         context.isProductDetailOpen ? "flex" : "hidden"
       } product-detail flex-col fixed top-20 border rounded-lg bg-white place-content-evenly gap-4 py-4 `}
     >
-      <div className="flex justify-end items-center px-7">
+      <div className="flex justify-start items-center px-10">
         <div
-          className="cursor-pointer"
+          className="cursor-pointer flex gap-1 items-center"
           onClick={() => context.CloseProductDetail()}
         >
-          <CloseCircle className="text-xl cursor-pointer" fillColor="white" />
+          <ArrowLeft fillcolor="transparent" />
+          <span className="font-semibold text-ms font-sans">BACK TO SHOP</span>
+          {/* <CloseCircle className="text-xl cursor-pointer" fillColor="white" /> */}
         </div>
       </div>
-      <figure className="flex grid-flow-col p-2 place-content-evenly">
+      <figure className="flex grid-flow-col place-content-evenly">
         {context.productToShow.images && (
           <img
             className="w-90 h-80  rounded-lg cursor-zoom-in"

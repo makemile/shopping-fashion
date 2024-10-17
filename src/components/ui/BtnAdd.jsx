@@ -6,7 +6,7 @@ export const BtnAdd = ({ onClick }) => {
     <button
       type="button"
       onClick={onClick}
-      className="flex justify-center items-center btn-w h-10 text-white  bg-black gap-1 rounded-sm"
+      className="flex justify-center items-center btn-w h-11 text-white  bg-black gap-1 rounded-md"
     >
       <PlusCircle fillColor="transparent" />
       Add To Cart
