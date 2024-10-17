@@ -1,0 +1,1 @@
+export const defaultImages = "https://ctppxztfz8.execute-api.us-west-2.amazonaws.com/v1/photo-server/products/empty-img.jpg"

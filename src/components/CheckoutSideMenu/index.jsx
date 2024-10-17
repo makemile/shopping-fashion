@@ -23,7 +23,7 @@ export const CheckoutSideMenu = () => {
       price: TotalPrice(context.cartProducts),
     };
     context.setOrder([...context.order, orderToAdd]);
-    context.setCartProducts([]);
+    // context.setCartProducts([]);
   };
 
   return (

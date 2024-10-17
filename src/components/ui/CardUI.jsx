@@ -1,3 +1,4 @@
+import { defaultImages } from "../../images/default";
 import { BtnAdd } from "./BtnAdd";
 import { BtnCheck } from "./BtnCheck";
 import { BtnFavorite } from "./BtnFavorite";
@@ -45,6 +46,11 @@ export const CardUI = ({
           alt={title}
           className="w-full h-auto object-cover rounded-t-lg"
           referrerPolicy="no-referrer"
+          onError={({currentTarget}) => {
+            currentTarget.onerror = null;
+            currentTarget.src = defaultImages;
+          }}
+
          />
         
         {CheckProduct(id)}
