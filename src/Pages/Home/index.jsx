@@ -1,12 +1,11 @@
 import "../../App.css";
-import { CardUI } from "../../components/ui/CardUI";
+import { CardUI } from "../../components/CardProduct/CardUI";
 import { Layout } from "../../components/Layout";
 import { ProductDetail } from "../../components/ProductDetail";
 import { ShoppingCartContext } from "../../context";
 import { useContext } from "react";
 import { CustomInput } from "../../components/ui/Input";
 import { useParams } from "react-router-dom";
-import { Loading } from "../../components/ui/skeleton-loader";
 
 export const Home = () => {
   const context = useContext(ShoppingCartContext);
@@ -22,7 +21,10 @@ export const Home = () => {
       const filtered = context.filterItem?.filter((item) =>
         item.category.name.toLowerCase().includes(category.toLowerCase())
       );
-      if (filtered?.length) {
+    if(context.loading){
+      <p>cargando</p>
+    }else{
+        if (filtered?.length) {
         return filtered.map((item) => (
           <CardUI
             key={item.id}
@@ -39,6 +41,7 @@ export const Home = () => {
       } else {
         return <div>There are nothing to see</div>;
       }
+    }
     } else {
       return context.filterItem?.map((item) => (
         <CardUI
@@ -64,16 +67,12 @@ export const Home = () => {
           onChange={(e) => context.setSearch(e.target.value)}
           value={context.debouncedSearch}
         />
-        {context.loading ? (
-          <Loading/>
-        ) : (
           <>
             <div className="grid grid-cols-3 gap-7 w-auto max-w-screen-lg items-center">
               {renderView()}
             </div>
             <ProductDetail />
           </>
-        )}
       </Layout>
     </>
   );

@@ -1,7 +1,7 @@
 import { defaultImages } from "../../images/default";
-import { BtnAdd } from "./BtnAdd";
-import { BtnCheck } from "./BtnCheck";
-import { BtnFavorite } from "./BtnFavorite";
+import { BtnAdd } from "../ui/BtnAdd";
+import { BtnCheck } from "../ui/BtnCheck";
+import { BtnFavorite } from "../ui/BtnFavorite";
 
 export const CardUI = ({
   title,

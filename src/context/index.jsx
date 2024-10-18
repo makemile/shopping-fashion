@@ -46,10 +46,11 @@ export const ShoppingCartProvider = ({ children }) => {
       try {
         const response = await axios.get(URLAPI);
         setData(response.data);
+        setLoading(false);
       } catch (error) {
         console.error(error);
       } finally {
-        setLoading(false);
+        console.info("finally")
       }
     }
     fetchAPI();
