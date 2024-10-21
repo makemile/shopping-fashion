@@ -1,8 +1,8 @@
 import { defaultImages } from "../../images/default";
 import { CheckCircle } from "../svg/CheckCircle";
+import { FavoriteProduct } from "../svg/FavoriteProduct";
 import { PlusCircle } from "../svg/PlusCircle";
-import { Button } from "../ui/Btn";
-import { BtnFavorite } from "../ui/BtnFavorite";
+import { Button } from "../ui/Button";
 
 export const CardUI = ({
   title,
@@ -28,7 +28,7 @@ export const CardUI = ({
   };
 
   const favoriteProduct = () => {
-    return <BtnFavorite />;
+    return <Button className="absolute top-0 right-0 items-end justify-end w-8 h-8 px-2 py-2 bg-transparent"><FavoriteProduct fillColor="transparent" /></Button>;
   };
 
   return (

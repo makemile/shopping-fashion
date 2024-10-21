@@ -1,5 +1,5 @@
 import { DeleteProduct } from "../svg/Trash";
-import { Button } from "../ui/Btn";
+import { Button } from "../ui/Button";
 
 export const OrderCard = ({ title, images, price, id , HandleDelete}) => {
   

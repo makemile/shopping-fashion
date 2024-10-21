@@ -1,9 +1,10 @@
 import "../../App.css";
 import { useForm } from "react-hook-form";
 import { Layout } from "../../components/Layout";
-import { BtnForm, InputForm, LabelForm } from "../../components/ui";
+import { InputForm, LabelForm } from "../../components/ui";
 import { useContext } from "react";
 import { ShoppingCartContext } from "../../context";
+import { Button } from "../../components/ui/Button";
 
 export const MyAccount = () => {
   const context = useContext(ShoppingCartContext);
@@ -75,12 +76,11 @@ export const MyAccount = () => {
           </div>
 
           <div>
-            <BtnForm
+            <Button
               type="submit"
-              className="bg-black disabled:bg-black/40 text-white w-full rounded-lg py-3 mt-8"
             >
               Edit
-            </BtnForm>
+            </Button>
           </div>
         </form>
       </div>

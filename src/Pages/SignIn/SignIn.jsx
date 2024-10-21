@@ -1,11 +1,11 @@
 import { ref } from "../../components/ui/InputForm.jsx";
 import { useForm } from "react-hook-form";
 import { Layout } from "../../components/Layout/index.jsx";
-import { BtnForm, InputForm, LabelForm } from "../../components/ui/index.js";
-import { refBtn } from "../../components/ui/BtnForm.jsx";
+import { InputForm, LabelForm } from "../../components/ui/index.js";
 import { useContext, useState } from "react";
 import { ShoppingCartContext } from "../../context/index.jsx";
 import { Navigate } from "react-router-dom";
+import { Button } from "../../components/ui/Button.jsx";
 
 export const SignIn = () => {
   const context = useContext(ShoppingCartContext);
@@ -29,6 +29,7 @@ export const SignIn = () => {
     ? Object.keys(account).length === 0
     : true;
   const isUserAccount = !isAccountLocalStorage || isAccountLocalState;
+  console.log(isUserAccount);
 
   const handleSignIn = () => {
     const stringifiedSignOut = JSON.stringify(false);
@@ -101,12 +102,9 @@ export const SignIn = () => {
           </div>
 
           <div>
-            <BtnForm
-              type="submit"
-              className="bg-black disabled:bg-black/40 text-white w-full rounded-lg py-3 mt-8"
-            >
+            <Button type="submit" className="justify-center">
               Create
-            </BtnForm>
+            </Button>
           </div>
         </form>
       </div>
@@ -160,28 +158,26 @@ export const SignIn = () => {
             </div>
 
             <div className="flex justify-center">
-              <BtnForm
-                ref={refBtn}
+              <Button
                 onClick={() => handleSignIn()}
                 type="submit"
-                className="bg-black disabled:bg-black/40 text-white w-full rounded-lg py-3 mt-4 mb-2"
                 disabled={!isUserAccount}
+                className="justify-center"
               >
                 Login
-              </BtnForm>
+              </Button>
             </div>
           </form>
         </div>
         <div className="flex justify-center">
-          <BtnForm
-            ref={refBtn}
+          <Button
             type="submit"
             onClick={() => setView("create-user-info")}
             disabled={isUserAccount}
-            className="bg-black disabled:bg-black/40 text-white w-full rounded-lg py-3 mt-4 mb-2"
+            className="justify-center"
           >
             Sign up
-          </BtnForm>
+          </Button>
         </div>
       </div>
     );
