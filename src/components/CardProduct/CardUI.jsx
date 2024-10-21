@@ -1,6 +1,7 @@
 import { defaultImages } from "../../images/default";
-import { BtnAdd } from "../ui/BtnAdd";
-import { BtnCheck } from "../ui/BtnCheck";
+import { CheckCircle } from "../svg/CheckCircle";
+import { PlusCircle } from "../svg/PlusCircle";
+import { Button } from "../ui/Btn";
 import { BtnFavorite } from "../ui/BtnFavorite";
 
 export const CardUI = ({
@@ -14,11 +15,10 @@ export const CardUI = ({
   id,
 }) => {
   const addProductsToCart = (event, productData) => {
-    event.preventDefault(); 
+    event.preventDefault();
     event.stopPropagation();
     context.setCount(context.count + 1);
     context.setCartProducts([...context.cartProducts, productData]);
-
   };
 
   const CheckProduct = (id) => {
@@ -40,19 +40,18 @@ export const CardUI = ({
         <span className="absolute bottom-0 left-0 backdrop-blur-sm bg-white/30 rounded-lg text-black/80 text-xs m-2 px-3 py-0.5 font-medium">
           {title}
         </span>
-      
-         <img 
+
+        <img
           src={images}
           alt={title}
           className="w-full h-auto object-cover rounded-t-lg"
           referrerPolicy="no-referrer"
-          onError={({currentTarget}) => {
+          onError={({ currentTarget }) => {
             currentTarget.onerror = null;
             currentTarget.src = defaultImages;
           }}
+        />
 
-         />
-        
         {CheckProduct(id)}
         {favoriteProduct()}
       </figure>
@@ -63,11 +62,22 @@ export const CardUI = ({
 
       {CheckProduct(id) ? (
         <div className="flex justify-center pb-3">
-          <BtnCheck />
+          <Button className="justify-center">
+            <CheckCircle fillColor="transparent" />
+            Added To Cart
+          </Button>
         </div>
       ) : (
         <div className="flex justify-center pb-3">
-          <BtnAdd onClick={(event) => {addProductsToCart(event,item)}} />
+          <Button
+            onClick={(event) => {
+              addProductsToCart(event, item);
+            }}
+            className="justify-center"
+          >
+            <PlusCircle fillColor="transparent" />
+            Add To Card
+          </Button>
         </div>
       )}
     </div>
