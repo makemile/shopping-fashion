@@ -1,7 +1,7 @@
 import { ref } from "../../components/ui/InputForm.jsx";
 import { useForm } from "react-hook-form";
 import { Layout } from "../../components/Layout/index.jsx";
-import { InputForm, LabelForm } from "../../components/ui/index.js";
+import { InputForm} from "../../components/ui/index.js";
 import { useContext, useState } from "react";
 import { ShoppingCartContext } from "../../context/index.jsx";
 import { Navigate } from "react-router-dom";
@@ -20,16 +20,18 @@ export const SignIn = () => {
 
   const account = localStorage.getItem("account");
 
-  const parsedAccount = JSON.parse(account);
+  const parsedAccount = JSON.stringify(account);
+
+  const formValues = JSON.parse(account);
 
   const isAccountLocalStorage = parsedAccount
     ? Object.keys(parsedAccount).length === 0
     : true;
   const isAccountLocalState = context.account
-    ? Object.keys(account).length === 0
+    ? Object.keys(account).length === 0 ||
+      Object.keys(account).length === undefined
     : true;
   const isUserAccount = !isAccountLocalStorage || isAccountLocalState;
-  console.log(isUserAccount);
 
   const handleSignIn = () => {
     const stringifiedSignOut = JSON.stringify(false);
@@ -50,7 +52,7 @@ export const SignIn = () => {
     };
 
     return (
-      <div className="flex sm:mx-auto sm:w-80 sm:max-w-sm min-h-full flex-col justify-center px-10 py-12 lg:px-8 border-2 rounded-lg gap-8">
+      <div className="flex sm:mx-auto sm:w-80 sm:max-w-sm min-h-full flex-col justify-center px-10 py-10 lg:px-8 border-2 rounded-lg gap-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Welcome
@@ -58,50 +60,46 @@ export const SignIn = () => {
         </div>
 
         <form className="space-y-3" onSubmit={handleSubmit(onSubmit)}>
-          <LabelForm htmlFor="name">Your name</LabelForm>
           <div className="mt-2">
             <InputForm
-              type="name"
+              label="name"
+              type="text"
               id="name"
-              ref={ref}
-              {...register("name", { required: "name is required" })}
-              autoComplete="on"
+              {...register("name")}
               placeholder="insert to name"
+              className = "w-full"
               required
             />
             {errors?.name?.message}
           </div>
 
-          <LabelForm htmlFor="email">Your email</LabelForm>
           <div className="mt-2">
             <InputForm
-              type="email"
+              label="email"
+              type="text"
               id="email"
-              ref={ref}
-              {...register("email", { required: "email is required" })}
-              autoComplete="on"
+              {...register("email")}
               placeholder="insert to email"
+              className = "w-full"
+              required
             />
             {errors?.email?.message}
           </div>
 
-          <LabelForm htmlFor="password">Password</LabelForm>
-
           <div className="mt-2">
             <InputForm
-              type="password"
+              label="password"
+              type="text"
               id="password"
-              ref={ref}
-              {...register("password", {
-                required: "password is required",
-              })}
-              autoComplete="on"
+              {...register("password")}
               placeholder="insert to password"
+              className = "w-full"
+              required
             />
             {errors?.password?.message}
           </div>
 
-          <div>
+          <div className="pt-3">
             <Button type="submit" className="justify-center">
               Create
             </Button>
@@ -113,41 +111,37 @@ export const SignIn = () => {
 
   const renderLogin = () => {
     return (
-      <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 border-2 rounded-lg gap-8">
+      <div className="flex min-h-full flex-col justify-center px-6 py-10 lg:px-8 border-2 rounded-lg gap-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Sign in to your account
           </h2>
         </div>
-
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <form className="space-y-3">
-            <LabelForm htmlFor="email">email</LabelForm>
             <div className="mt-2">
               <InputForm
+                label="email"
                 type="email"
                 id="email"
                 ref={ref}
-                defaultValue={parsedAccount.email}
+                defaultValue={formValues.email}
                 // {...register("email", { required: "email is required" })}
-                autoComplete="on"
                 placeholder="insert to email"
+                className = "w-full"
               />
               {/* {errors?.email?.message} */}
             </div>
-
-            <div className="flex items-center justify-between">
-              <LabelForm htmlFor="password">password</LabelForm>
-            </div>
             <div className="mt-2">
               <InputForm
+                label="password"
                 type="password"
                 id="password"
                 ref={ref}
-                defaultValue={parsedAccount.password}
+                defaultValue={formValues.password}
                 // {...register("password", { required: "password is required" })}
-                autoComplete="on"
                 placeholder="insert to password"
+                className = "w-full"
               />
               {/* {errors?.password?.message} */}
             </div>
@@ -156,7 +150,6 @@ export const SignIn = () => {
                 Forgot password?
               </a>
             </div>
-
             <div className="flex justify-center">
               <Button
                 onClick={() => handleSignIn()}

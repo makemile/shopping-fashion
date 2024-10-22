@@ -61,14 +61,14 @@ export const CardUI = ({
       </p>
 
       {CheckProduct(id) ? (
-        <div className="flex justify-center pb-3">
+        <div className="flex justify-center p-2">
           <Button className="justify-center">
             <CheckCircle fillColor="transparent" />
             Added To Cart
           </Button>
         </div>
       ) : (
-        <div className="flex justify-center pb-3">
+        <div className="flex justify-center p-2">
           <Button
             onClick={(event) => {
               addProductsToCart(event, item);

@@ -4,8 +4,8 @@ import { Layout } from "../../components/Layout";
 import { ProductDetail } from "../../components/ProductDetail";
 import { ShoppingCartContext } from "../../context";
 import { useContext } from "react";
-import { CustomInput } from "../../components/ui/Input";
 import { useParams } from "react-router-dom";
+import { InputForm } from "../../components/ui";
 
 export const Home = () => {
   const context = useContext(ShoppingCartContext);
@@ -62,11 +62,15 @@ export const Home = () => {
   return (
     <>
       <Layout>
-        <CustomInput
+      <div className="flex flex-col items-center gap-4">
+        <InputForm
           type="search"
+          placeholder="Search product Favorite"
+          className="rounded-3xl w-96 h-10 text-center border border-slate-600 focus:outline-none"
           onChange={(e) => context.setSearch(e.target.value)}
           value={context.debouncedSearch}
         />
+         </div>
           <>
             <div className="grid grid-cols-3 gap-7 w-auto max-w-screen-lg items-center">
               {renderView()}
