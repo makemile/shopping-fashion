@@ -64,7 +64,7 @@ export const CheckoutSideMenu = () => {
       <hr className="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700"/>
       {context.signOut ? (
         <NavLink to={"sign-in"} className="flex justify-center p-4">
-          <button className="bg-black text-md text-white rounded-md w-1/2 p-2">
+          <button className="bg-black text-md text-white rounded-md w-full h-11">
             Please Login
           </button>
         </NavLink>
@@ -74,7 +74,7 @@ export const CheckoutSideMenu = () => {
             onClick={() => {
               HandleCheckout();
             }}
-            className="bg-black text-md text-white rounded-md w-96 p-3"
+            className="bg-black text-md text-white rounded-md w-full h-11"
           >
             Checkout
           </button>

@@ -18,7 +18,7 @@ export const OrderCard = ({ title, images, price, id , HandleDelete}) => {
         </figure>
        {
         HandleDelete &&
-         <Button onClick={() => {HandleDelete(id)}} className="text-slate-800 bg-white justify-end"><DeleteProduct fillColor="white"/></Button>
+         <Button onClick={() => {HandleDelete(id)}} className="text-slate-900 bg-white justify-end"><DeleteProduct fillColor="white"/></Button>
        }
       </div>
     </>
