@@ -62,17 +62,17 @@ export const Home = () => {
   return (
     <>
       <Layout>
-      <div className="flex flex-col items-center gap-4">
+      <div className=" gap-4">
         <InputForm
           type="search"
           placeholder="Search product Favorite"
-          className="rounded-3xl w-96 h-10 text-center border border-slate-600 focus:outline-none"
+          className="rounded-3xl w-72 md:w-96 h-10 text-center border border-slate-600 focus:outline-none"
           onChange={(e) => context.setSearch(e.target.value)}
           value={context.debouncedSearch}
         />
          </div>
           <>
-            <div className="grid grid-cols-3 gap-7 w-auto max-w-screen-lg items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-7 w-auto max-w-screen-lg lg:grid-cols-3 items-center">
               {renderView()}
             </div>
             <ProductDetail />

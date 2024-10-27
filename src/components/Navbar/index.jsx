@@ -3,6 +3,8 @@ import { ShoppingCartContext } from "../../context";
 import { ShoppingBag } from "../svg/ShoppingBag";
 import { useContext, useState } from "react";
 import { BurgerNav } from "../svg/BurgerNav";
+import { Button } from "../ui/Button";
+import { CloseCircle } from "../svg/CloseCircle";
 
 const NavLinks = () => {
   const context = useContext(ShoppingCartContext);
@@ -122,7 +124,7 @@ export const Navbar = () => {
         </div>
           <div className="md:hidden">
           <button onClick={toggleNavbar}>
-            {isOpen ? "menu" : <BurgerNav />}
+            {isOpen ? <Button><CloseCircle /></Button> : <BurgerNav />}
           </button>
           </div>
       

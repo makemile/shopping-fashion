@@ -111,7 +111,7 @@ export const SignIn = () => {
 
   const renderLogin = () => {
     return (
-      <div className="flex min-h-full flex-col justify-center px-6 py-10 lg:px-8 border-2 rounded-lg gap-8">
+      <div className="flex min-h-full flex-col justify-center px-6 py-10 lg:px-8 md:border-2 lg:border-2 rounded-lg gap-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Sign in to your account
