@@ -17,6 +17,8 @@ const NavLinks = () => {
   const signOut = localStorage.getItem("sign-out");
   const parsedSignOut = JSON.parse(signOut);
   const isUserSignOut = context.signOut || parsedSignOut;
+  const account = localStorage.getItem("account");
+  const formValues = JSON.parse(account);
 
   const handleSignOut = () => {
     const stringifiedSignOut = JSON.stringify(true);
@@ -42,28 +44,29 @@ const NavLinks = () => {
       );
     } else {
       return (
-        <>
-          <li className="text-black/60">luis@gmail.com</li>
-          <li>
-            <NavLink to="/my-orders" style={getNavLinkStyle}>
+        <div className="flex gap-5 items-center">
+          <li className="text-white list-none">{formValues.email}</li>
+          <li className="list-none">
+            <NavLink to="/my-orders"  style={getNavLinkStyle}>
               My Orders
             </NavLink>
           </li>
-          <li>
+          <li className="list-none">
             <NavLink to="my-account" style={getNavLinkStyle}>
               My Account
             </NavLink>
           </li>
-          <li>
+          <li className="list-none">
             <NavLink
               to="/sign-in"
               style={getNavLinkStyle}
               onClick={() => handleSignOut()}
+            
             >
               Sign out
             </NavLink>
           </li>
-        </>
+        </div>
       );
     }
   };
@@ -118,8 +121,8 @@ export const Navbar = () => {
 
   return (
     <>
-      <nav className="flex w-9/12 justify-end">
-        <div className="hidden gap-3 md:flex">
+      <nav className="flex w-11/12 justify-end">
+        <div className="hidden gap-3 md:flex items-center">
           <NavLinks />
         </div>
           <div className="md:hidden">
