@@ -25,6 +25,7 @@
 | 🎨 **Tailwind CSS** | Framework CSS para diseño moderno    |
 | 🐳 **Docker**       | Herramienta para contenerización     |
 | 💾 **LocalStorage** | Almacenamiento de datos en el navegador |
+|    **Vite**         | Herramienta de compilación               |
 
 ## Installation
    **1. Clone the repo**
