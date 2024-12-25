@@ -1,9 +1,9 @@
 import { ref } from "../../components/ui/InputForm.jsx";
 import { useForm } from "react-hook-form";
-import { Layout } from "../../components/Layout/index.jsx";
+import { Layout } from "../../components/Layout/index.js";
 import { InputForm} from "../../components/ui/index.js";
 import { useContext, useState } from "react";
-import { ShoppingCartContext } from "../../context/index.jsx";
+import { ShoppingCartContext } from "../../context/index.js";
 import { Navigate } from "react-router-dom";
 import { Button } from "../../components/ui/Button.jsx";
 

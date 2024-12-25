@@ -3,6 +3,7 @@ import { URLAPI } from "../utils/Api";
 import axios from "axios";
 import { useDebounce } from "../hooks";
 import { initializeLocalStorage } from "../utils/localStorageUtils";
+import { Data } from "../Types/dataTypes";
 
 export const ShoppingCartContext = createContext();
 initializeLocalStorage();
@@ -16,7 +17,7 @@ export const ShoppingCartProvider = ({ children }) => {
   const [productToShow, setProductToShow] = useState({});
   const [cartProducts, setCartProducts] = useState([]);
   const [order, setOrder] = useState([]);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState <Data[]>([]);
   const [loading, setLoading] = useState(false);
   const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false);
   const [search, setSearch] = useState("");
