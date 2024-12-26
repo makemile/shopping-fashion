@@ -1,15 +1,15 @@
 import React, { createContext, useState, useEffect } from "react";
-import { URLAPI } from "../utils/Api";
-import axios from "axios";
 import { useDebounce } from "../hooks";
 import { initializeLocalStorage } from "../utils/localStorageUtils";
 import { Data, Product } from "../types/dataTypes";
 import { ShoppingCartProviderProps } from "../types/context";
+import { fetchProducts } from "../components/service/apiService";
 
 export const ShoppingCartContext = createContext({});
 initializeLocalStorage();
-export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({children}) => {
-
+export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({
+  children,
+}) => {
   const [count, setCount] = useState(0);
 
   const [account, setAccount] = useState({});
@@ -19,15 +19,13 @@ export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({child
   const [productToShow, setProductToShow] = useState({});
   const [cartProducts, setCartProducts] = useState<Product[]>([]);
   const [order, setOrder] = useState([]);
-  const [data, setData] = useState <Data[]>([]);
+  const [data, setData] = useState<Data[]>([]);
+  console.log(data);
   const [loading, setLoading] = useState<boolean>(false);
   const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [filterItem, setFilterItem] = useState<Data[]>([]);
   const debouncedSearch = useDebounce(search, 500);
- 
- 
-  
 
   useEffect(() => {
     if (debouncedSearch.length > 0) {
@@ -47,13 +45,13 @@ export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({child
     async function fetchAPI() {
       setLoading(true);
       try {
-        const response = await axios.get(URLAPI);
-        setData(response.data);
+        const response = await fetchProducts();
+        setData(response);
         setLoading(false);
       } catch (error) {
         console.error(error);
       } finally {
-        console.info("finally")
+        console.info("finally");
       }
     }
     fetchAPI();
@@ -63,7 +61,6 @@ export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({child
   const CloseProductDetail = () => setIsProductDetailOpen(false);
   const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true);
   const CloseCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false);
-
 
   return (
     <ShoppingCartContext.Provider
@@ -89,10 +86,10 @@ export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({child
         setSearch,
         filterItem,
         debouncedSearch,
-        account, 
+        account,
         setAccount,
-        signOut, 
-        setSignOut
+        signOut,
+        setSignOut,
       }}
     >
       {children}
