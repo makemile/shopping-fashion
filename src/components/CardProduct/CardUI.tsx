@@ -1,10 +1,12 @@
-import { defaultImages } from "../../images/default";
-import { CheckCircle } from "../svg/CheckCircle";
-import { FavoriteProduct } from "../svg/FavoriteProduct";
-import { PlusCircle } from "../svg/PlusCircle";
-import { Button } from "../ui/Button";
+import React from "react";
+import {defaultImages}  from '../../images/default';
+import {CheckCircle} from "../svg/CheckCircle";
+import {FavoriteProduct} from "../svg/FavoriteProduct";
+import {PlusCircle} from "../svg/PlusCircle";
+import { Button } from "../ui/Button.js";
+import { CardUIProps, Product } from "../../types/dataTypes";
 
-export const CardUI = ({
+export const CardUI: React.FC<CardUIProps> = ({
   title,
   images,
   category,
@@ -14,21 +16,28 @@ export const CardUI = ({
   item,
   id,
 }) => {
-  const addProductsToCart = (event, productData) => {
+  const addProductsToCart = (
+    event: React.MouseEvent<HTMLButtonElement>,
+    productData: Product
+  ) => {
     event.preventDefault();
     event.stopPropagation();
     context.setCount(context.count + 1);
-    context.setCartProducts([...context.cartProducts, productData]);
+    context.setCardProducts([...context.cartProducts, productData]);
   };
 
-  const CheckProduct = (id) => {
+  const CheckProduct = (id: number) => {
     return (
       context.cartProducts.filter((product) => product.id === id).length > 0
     );
   };
 
   const favoriteProduct = () => {
-    return <Button className="absolute top-0 right-0 items-end justify-end w-8 h-8 px-2 py-2 bg-transparent"><FavoriteProduct fillColor="transparent" /></Button>;
+    return (
+      <Button className="absolute top-0 right-0 items-end justify-end w-8 h-8 px-2 py-2 bg-transparent">
+        <FavoriteProduct fillColor="transparent" />
+      </Button>
+    );
   };
 
   return (
@@ -70,7 +79,7 @@ export const CardUI = ({
       ) : (
         <div className="flex justify-center p-2">
           <Button
-            onClick={(event) => {
+            onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
               addProductsToCart(event, item);
             }}
             className="justify-center"

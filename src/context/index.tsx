@@ -1,16 +1,17 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDebounce } from "../hooks";
 import { initializeLocalStorage } from "../utils/localStorageUtils";
-import { Data, Product } from "../types/dataTypes";
+import { ContextType, Data, Product } from "../types/dataTypes";
 import { ShoppingCartProviderProps } from "../types/context";
 import { fetchProducts } from "../components/service/apiService";
 
-export const ShoppingCartContext = createContext({});
+export const ShoppingCartContext = React.createContext<ContextType | undefined>(undefined);
+
 initializeLocalStorage();
 export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({
   children,
 }) => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState<number>(0);
 
   const [account, setAccount] = useState({});
   const [signOut, setSignOut] = useState(false);

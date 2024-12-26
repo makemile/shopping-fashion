@@ -5,7 +5,7 @@ import { ProductDetail } from "../../components/ProductDetail";
 import { ShoppingCartContext } from "../../context";
 import { useContext } from "react";
 import { useParams } from "react-router-dom";
-import { InputForm } from "../../components/ui";
+import { InputForm } from "../../components/ui/InputForm.jsx";
 
 export const Home = () => {
   const context = useContext(ShoppingCartContext);

@@ -1,3 +1,11 @@
+export interface ContextType{
+count:number;
+cartProducts: Product[];
+setCount: (newCount:number) => avoid;
+setCardProducts: (newProducts:Product[]) => avoid;
+};
+
+
 export interface Data {
   category: {
     id: number;
@@ -14,5 +22,21 @@ export interface Product {
   id: number;
   title: string;
   price: number;
-  images: string[];
+  images: string;
+  category: {
+    id: number;
+    image: string;
+    name: string;
+  };
 };
+
+interface CardUIProps {
+    title: string;
+    images: string;
+    category: string;
+    price: number;
+    context: ContextType;
+    showProduct: (item: Product) => void;
+    item: Product;
+    id: number;
+  }

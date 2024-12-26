@@ -1,6 +1,6 @@
 import { currentDate } from "../../utils";
-import { Calendar } from "../svg/Calendar";
-import { ShoppingBag } from "../svg/ShoppingBag";
+import  {Calendar}  from "../svg/Calendar";
+import {ShoppingBag} from "../svg/ShoppingBag";
 export const OrdersCard = ({ count, price }) => {
   return (
     <div className="flex items-center mb-3 border justify-center border-black rounded-lg w-80 h-16">

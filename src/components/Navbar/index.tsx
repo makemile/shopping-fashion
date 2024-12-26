@@ -1,9 +1,9 @@
 import { NavLink } from "react-router-dom";
 import { ShoppingCartContext } from "../../context";
-import { ShoppingBag } from "../svg/ShoppingBag";
+import {ShoppingBag}  from "../svg/ShoppingBag";
 import { useContext, useState } from "react";
-import { BurgerNav } from "../svg/BurgerNav";
-import { Button } from "../ui/Button";
+import {BurgerNav}  from "../svg/BurgerNav";
+import { Button } from "../ui/Button.jsx";
 import { CloseCircle } from "../svg/CloseCircle";
 
 const NavLinks = () => {
