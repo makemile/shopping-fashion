@@ -1,13 +1,15 @@
-import { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import { URLAPI } from "../utils/Api";
 import axios from "axios";
 import { useDebounce } from "../hooks";
 import { initializeLocalStorage } from "../utils/localStorageUtils";
-import { Data } from "../Types/dataTypes";
+import { Data, Product } from "../types/dataTypes";
+import { ShoppingCartProviderProps } from "../types/context";
 
-export const ShoppingCartContext = createContext();
+export const ShoppingCartContext = createContext({});
 initializeLocalStorage();
-export const ShoppingCartProvider = ({ children }) => {
+export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({children}) => {
+
   const [count, setCount] = useState(0);
 
   const [account, setAccount] = useState({});
@@ -15,13 +17,13 @@ export const ShoppingCartProvider = ({ children }) => {
 
   const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
   const [productToShow, setProductToShow] = useState({});
-  const [cartProducts, setCartProducts] = useState([]);
+  const [cartProducts, setCartProducts] = useState<Product[]>([]);
   const [order, setOrder] = useState([]);
   const [data, setData] = useState <Data[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false);
   const [search, setSearch] = useState("");
-  const [filterItem, setFilterItem] = useState(null);
+  const [filterItem, setFilterItem] = useState<Data[]>([]);
   const debouncedSearch = useDebounce(search, 500);
  
  
