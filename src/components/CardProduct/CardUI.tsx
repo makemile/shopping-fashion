@@ -25,7 +25,7 @@ export const CardUI: React.FC<CardUIProps> = ({
     context.setCount(context.count + 1);
     context.setCardProducts([...context.cartProducts, productData]);
   };
-
+console.log(context);
   const CheckProduct = (id: number) => {
     return (
       context.cartProducts.filter((product) => product.id === id).length > 0

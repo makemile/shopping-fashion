@@ -1,6 +1,13 @@
+import React from "react";
 import "../ui/index.css";
+import { ButtonProps } from "../../types/ButtonProps";
 
-export const Button = ({ onClick, children, type, className }) => {
+export const Button: React.FC<ButtonProps> = ({
+  onClick,
+  children,
+  type,
+  className,
+}) => {
   return (
     <button
       type={type}

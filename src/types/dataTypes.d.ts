@@ -1,11 +1,3 @@
-export interface ContextType{
-count:number;
-cartProducts: Product[];
-setCount: (newCount:number) => avoid;
-setCardProducts: (newProducts:Product[]) => avoid;
-};
-
-
 export interface Data {
   category: {
     id: number;
