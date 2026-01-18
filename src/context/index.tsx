@@ -31,7 +31,7 @@ export const ShoppingCartProvider: React.FC<{ children: ReactNode }> = ({
   const debouncedSearch = useDebounce(search, 500);
 
   useEffect(() => {
-    if (debouncedSearch.length > 0) {
+    if (debouncedSearch?.length > 0) {
       setFilterItem(
         data?.filter((item) =>
           item.category.name
