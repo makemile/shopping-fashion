@@ -1,14 +1,16 @@
 import { ref } from "../../components/ui/InputForm.jsx";
 import { useForm } from "react-hook-form";
-import { Layout } from "../../components/Layout/index.jsx";
-import { InputForm} from "../../components/ui/index.js";
+import { Layout } from "../../components/Layout/index.js";
+import { InputForm } from "../../components/ui/index.js";
 import { useContext, useState } from "react";
-import { ShoppingCartContext } from "../../context/index.jsx";
+import { ShoppingCartContext } from "../../context/index.js";
 import { Navigate } from "react-router-dom";
 import { Button } from "../../components/ui/Button.jsx";
+import React from "react";
 
 export const SignIn = () => {
   const context = useContext(ShoppingCartContext);
+  if (!context) return null;
   const [redirectToHome, setRedirectToHome] = useState(false);
   const [view, setView] = useState("user-info");
 
@@ -18,7 +20,7 @@ export const SignIn = () => {
     formState: { errors },
   } = useForm();
 
-  const account = localStorage.getItem("account");
+  const account = localStorage.getItem("account") ?? "";
 
   const parsedAccount = JSON.stringify(account);
 
@@ -45,7 +47,7 @@ export const SignIn = () => {
   }
 
   const renderCreateUserInfo = () => {
-    const onSubmit = (data) => {
+    const onSubmit = (data: any) => {
       localStorage.setItem("account", JSON.stringify(data));
       context.setAccount(data);
       handleSignIn();
@@ -67,10 +69,10 @@ export const SignIn = () => {
               id="name"
               {...register("name")}
               placeholder="insert to name"
-              className = "w-full"
+              className="w-full"
               required
             />
-            {errors?.name?.message}
+            {errors?.name?.message?.toString()}
           </div>
 
           <div className="mt-2">
@@ -80,10 +82,10 @@ export const SignIn = () => {
               id="email"
               {...register("email")}
               placeholder="insert to email"
-              className = "w-full"
+              className="w-full"
               required
             />
-            {errors?.email?.message}
+            {errors?.email?.message?.toString()}
           </div>
 
           <div className="mt-2">
@@ -93,10 +95,10 @@ export const SignIn = () => {
               id="password"
               {...register("password")}
               placeholder="insert to password"
-              className = "w-full"
+              className="w-full"
               required
             />
-            {errors?.password?.message}
+            {errors?.password?.message?.toString()}
           </div>
 
           <div className="pt-3">
@@ -128,7 +130,7 @@ export const SignIn = () => {
                 defaultValue={formValues.email}
                 // {...register("email", { required: "email is required" })}
                 placeholder="insert to email"
-                className = "w-full"
+                className="w-full"
               />
               {/* {errors?.email?.message} */}
             </div>
@@ -141,7 +143,7 @@ export const SignIn = () => {
                 defaultValue={formValues.password}
                 // {...register("password", { required: "password is required" })}
                 placeholder="insert to password"
-                className = "w-full"
+                className="w-full"
               />
               {/* {errors?.password?.message} */}
             </div>

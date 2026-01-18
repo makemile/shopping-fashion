@@ -1,20 +1,23 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, InputHTMLAttributes } from "react";
 
-export const InputForm = forwardRef(
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  label: string;
+  id: string;
+}
+
+export const InputForm = forwardRef<HTMLInputElement, InputProps>(
   (
-    {
-      label,
-      type,
-      id,
-      className,
-      placeholder,
-      ...props // Use ...props to get everything else
-    },
-    ref
+    { label, type = "text", id, className = "", placeholder, ...props },
+    ref,
   ) => {
     return (
       <div className="mb-4">
-        <label htmlFor={id} className={`text-sm font-medium leading-6 text-gray-900`}>{label}</label>
+        <label
+          htmlFor={id}
+          className={`text-sm font-medium leading-6 text-gray-900`}
+        >
+          {label}
+        </label>
         <input
           ref={ref}
           type={type}
@@ -25,7 +28,7 @@ export const InputForm = forwardRef(
         />
       </div>
     );
-  }
+  },
 );
 
 export const ref = React.createRef();

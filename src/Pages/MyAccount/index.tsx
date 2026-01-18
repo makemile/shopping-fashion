@@ -1,10 +1,11 @@
+import React from "react";
 import "../../App.css";
 import { useForm } from "react-hook-form";
 import { Layout } from "../../components/Layout";
-import { InputForm} from "../../components/ui";
 import { useContext } from "react";
 import { ShoppingCartContext } from "../../context";
 import { Button } from "../../components/ui/Button";
+import { InputForm } from "../../components/ui/InputForm";
 
 export const MyAccount = () => {
   const context = useContext(ShoppingCartContext);
@@ -15,9 +16,9 @@ export const MyAccount = () => {
   } = useForm({
     shouldUnregister: true,
   });
-  const date = JSON.parse(localStorage.getItem("account"));
-
-  const onSubmit = (data) => {
+  const date = JSON.parse(localStorage.getItem("account") ?? "false");
+  if (!context) return null;
+  const onSubmit = (data: any) => {
     localStorage.setItem("account", JSON.stringify(data));
     context.setAccount(data);
   };
@@ -40,10 +41,10 @@ export const MyAccount = () => {
               {...register("name", { required: "name is required" })}
               autoComplete="on"
               placeholder="insert to name"
-              className = "w-full"
+              className="w-full"
               required
             />
-            {errors?.name?.message}
+            {errors?.name?.message?.toString()}
           </div>
           <div className="mt-2">
             <InputForm
@@ -54,10 +55,10 @@ export const MyAccount = () => {
               {...register("email", { required: "email is required" })}
               autoComplete="on"
               placeholder="insert to email"
-              className = "w-full"
+              className="w-full"
               required
             />
-            {errors?.email?.message}
+            {errors?.email?.message?.toString()}
           </div>
           <div className="mt-2">
             <InputForm
@@ -70,9 +71,9 @@ export const MyAccount = () => {
               })}
               autoComplete="on"
               placeholder="insert to password"
-              className = "w-full"
+              className="w-full"
             />
-            {errors?.password?.message}
+            {errors?.password?.message?.toString()}
           </div>
           <div className="flex justify-center pt-4">
             <Button type="submit" className="justify-center">
