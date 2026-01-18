@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import { Layout } from "../../components/Layout";
 import { ShoppingCartContext } from "../../context";
 import { OrdersCard } from "../../components/OrdersCard";
+import React from "react";
 
 
 export const MyOrders = () => {
   const context = useContext(ShoppingCartContext);
+    if (!context) return null;
  
   return (
     <Layout>

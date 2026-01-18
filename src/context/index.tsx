@@ -1,16 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ReactNode } from "react";
 import { useDebounce } from "../hooks";
 import { initializeLocalStorage } from "../utils/localStorageUtils";
-import { ContextType, Data, Product } from "../types/dataTypes";
-import { ShoppingCartProviderProps } from "../types/context";
+import { ContextType } from "../types/context";
 import { fetchProducts } from "../components/service/apiService";
+import { Data, Product } from "../types/dataTypes";
 
-export const ShoppingCartContext = React.createContext<ContextType | undefined>(undefined);
+export const ShoppingCartContext = React.createContext<ContextType | undefined>(
+  undefined,
+);
 
 initializeLocalStorage();
-export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({
+export const ShoppingCartProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
+  const [cartProducts, setCartProducts] = useState<Product[]>([]);
   const [count, setCount] = useState<number>(0);
 
   const [account, setAccount] = useState({});
@@ -18,8 +21,7 @@ export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({
 
   const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
   const [productToShow, setProductToShow] = useState({});
-  const [cartProducts, setCartProducts] = useState<Product[]>([]);
-  const [order, setOrder] = useState([]);
+  const [order, setOrder] = useState<any>([]);
   const [data, setData] = useState<Data[]>([]);
   console.log(data);
   const [loading, setLoading] = useState<boolean>(false);
@@ -34,8 +36,8 @@ export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({
         data?.filter((item) =>
           item.category.name
             .toLowerCase()
-            .includes(debouncedSearch.toLowerCase())
-        )
+            .includes(debouncedSearch.toLowerCase()),
+        ),
       );
     } else {
       setFilterItem(data);

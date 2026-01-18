@@ -1,21 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
 import {defaultImages}  from '../../images/default';
 import {CheckCircle} from "../svg/CheckCircle";
 import {FavoriteProduct} from "../svg/FavoriteProduct";
 import {PlusCircle} from "../svg/PlusCircle";
 import { Button } from "../ui/Button.js";
 import { CardUIProps, Product } from "../../types/dataTypes";
+import { ShoppingCartContext } from "../../context";
 
 export const CardUI: React.FC<CardUIProps> = ({
   title,
   images,
   category,
   price,
-  context,
   showProduct,
   item,
   id,
 }) => {
+  const context = useContext(ShoppingCartContext);
+
+  if (!context) {
+    throw new Error("ShoppingCartContext is not available");
+  };
+
+  const {cartProducts} = context;
+
   const addProductsToCart = (
     event: React.MouseEvent<HTMLButtonElement>,
     productData: Product
@@ -23,18 +31,17 @@ export const CardUI: React.FC<CardUIProps> = ({
     event.preventDefault();
     event.stopPropagation();
     context.setCount(context.count + 1);
-    context.setCardProducts([...context.cartProducts, productData]);
+    context.setCartProducts([...context.cartProducts, productData]);
   };
-console.log(context);
   const CheckProduct = (id: number) => {
     return (
-      context.cartProducts.filter((product) => product.id === id).length > 0
+      cartProducts.filter((product: { id: number}) => product.id === id).length > 0
     );
   };
 
   const favoriteProduct = () => {
     return (
-      <Button className="absolute top-0 right-0 items-end justify-end w-8 h-8 px-2 py-2 bg-transparent">
+      <Button type="button" className="absolute top-0 right-0 items-end justify-end w-8 h-8 px-2 py-2 bg-transparent">
         <FavoriteProduct fillColor="transparent" />
       </Button>
     );
@@ -71,7 +78,7 @@ console.log(context);
 
       {CheckProduct(id) ? (
         <div className="flex justify-center p-2">
-          <Button className="justify-center">
+          <Button type="button" className="justify-center">
             <CheckCircle fillColor="transparent" />
             Added To Cart
           </Button>
@@ -79,10 +86,11 @@ console.log(context);
       ) : (
         <div className="flex justify-center p-2">
           <Button
-            onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+             onClick={(event: React.MouseEvent<HTMLButtonElement>)  => {
               addProductsToCart(event, item);
             }}
             className="justify-center"
+            type="button"
           >
             <PlusCircle fillColor="transparent" />
             Add To Card

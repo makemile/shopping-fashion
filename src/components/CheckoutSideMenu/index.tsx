@@ -1,16 +1,17 @@
+import React from "react";
 import { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { ShoppingCartContext } from "../../context";
 import { OrderCard } from "../OrderCard";
 import { CloseCircle } from "../svg/CloseCircle";
 import { TotalPrice } from "../../utils";
-import "./styles.css";
 
 export const CheckoutSideMenu = () => {
   const context = useContext(ShoppingCartContext);
-  const HandleDelete = (id) => {
+  if (!context) return null;
+  const HandleDelete = (id: number | string) => {
     const filterProducts = context.cartProducts.filter(
-      (product) => product.id !== id
+      (product) => product.id !== id,
     );
     context.setCartProducts(filterProducts);
     context.setCount(context.count - 1);
@@ -23,7 +24,7 @@ export const CheckoutSideMenu = () => {
       price: TotalPrice(context.cartProducts),
     };
     context.setOrder([...context.order, orderToAdd]);
-    // context.setCartProducts([]);
+    context.setCartProducts([]);
   };
 
   return (
@@ -41,7 +42,7 @@ export const CheckoutSideMenu = () => {
           <CloseCircle className="text-xl cursor-pointer" fillColor="white" />
         </div>
       </div>
-      <hr className="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700"/>
+      <hr className="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700" />
       <div className="overflow-y-auto flex-1">
         {context.cartProducts.map((product) => (
           <OrderCard
@@ -54,14 +55,14 @@ export const CheckoutSideMenu = () => {
           />
         ))}
       </div>
-      <hr className="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700"/>
+      <hr className="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700" />
       <div className="px-2.5 py-1">
         <p className="flex justify-between">
           <span className="text-md font-semibold">Total</span>
           <span className="font-bold">${TotalPrice(context.cartProducts)}</span>
         </p>
       </div>
-      <hr className="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700"/>
+      <hr className="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700" />
       {context.signOut ? (
         <NavLink to={"sign-in"} className="flex justify-center p-4">
           <button className="bg-black text-md text-white rounded-md w-full h-11">
@@ -69,7 +70,10 @@ export const CheckoutSideMenu = () => {
           </button>
         </NavLink>
       ) : (
-        <NavLink to={"/my-orders/last"} className="flex justify-center py-3.5 px-2">
+        <NavLink
+          to={"/my-orders/last"}
+          className="flex justify-center py-3.5 px-2"
+        >
           <button
             onClick={() => {
               HandleCheckout();

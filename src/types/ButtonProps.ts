@@ -1,11 +1,13 @@
 import { ReactNode } from "react";
 
 export interface WithChildren {
-    children: ReactNode;
-  }
+  children: ReactNode;
+}
 
 export interface ButtonProps extends WithChildren {
-    type: "button" | "submit" | "reset";
-    onClick: () => void;
-    className: string;
-};
+  children: React.ReactNode;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  type?: "button" | "submit" | "reset"; 
+  className?: string;
+  disabled?: boolean;
+}

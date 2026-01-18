@@ -1,4 +1,6 @@
-export const BurgerNav = ({fillcolor}) => {
+import React from "react";
+
+export const BurgerNav = ({ fillcolor }: any) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

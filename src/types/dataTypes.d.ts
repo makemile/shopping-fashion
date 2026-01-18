@@ -1,3 +1,5 @@
+import { ContextType } from "./context";
+
 export interface Data {
   category: {
     id: number;
@@ -22,13 +24,17 @@ export interface Product {
   };
 };
 
-interface CardUIProps {
+interface CardUIProps extends ContextType {
     title: string;
     images: string;
     category: string;
     price: number;
-    context: ContextType;
     showProduct: (item: Product) => void;
     item: Product;
     id: number;
   }
+
+  export interface OrdersCardProps {
+  count: number;
+  price: number | string;
+}

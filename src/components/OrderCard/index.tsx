@@ -1,7 +1,8 @@
+import React from "react";
 import {DeleteProduct}  from "../svg/Trash";
 import { Button } from "../ui/Button.jsx";
 
-export const OrderCard = ({ title, images, price, id , HandleDelete}) => {
+export const OrderCard = ({ title, images, price, id , HandleDelete}:any) => {
   
   return (
     <>

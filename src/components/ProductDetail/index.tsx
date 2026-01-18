@@ -1,11 +1,10 @@
 import { ShoppingCartContext } from "../../context";
-import { CloseCircle } from "../svg/CloseCircle";
 import { ArrowLeft } from "../svg/ArrowLeft";
-import "./styles.css";
 import { useContext } from "react";
+import React from "react";
 export const ProductDetail = () => {
   const context = useContext(ShoppingCartContext);
-
+  if (!context) return null;
   return (
     <aside
       className={`${
