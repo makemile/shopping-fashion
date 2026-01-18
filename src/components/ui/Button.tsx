@@ -12,7 +12,7 @@ export const Button: React.FC<ButtonProps> = ({
     <button
       type={type}
       onClick={onClick}
-      className={`flex items-center btn-w h-11 text-white bg-black gap-1 rounded-md ${className}`}
+      className={`flex items-center w-full btn-w h-11 text-white bg-black gap-1 rounded-md ${className}`}
       disabled={disabled}
     >
       {children}

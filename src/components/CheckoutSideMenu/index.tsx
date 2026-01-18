@@ -16,24 +16,45 @@ export const CheckoutSideMenu = () => {
     context.setCartProducts(filterProducts);
     context.setCount(context.count - 1);
   };
-  const HandleCheckout = () => {
-    const orderToAdd = {
-      date: "01.02.23",
-      product: context.cartProducts,
-      count: context.cartProducts.length,
-      price: TotalPrice(context.cartProducts),
-    };
-    context.setOrder([...context.order, orderToAdd]);
-    context.setCartProducts([]);
+  const HandleCheckout = async () => {
+    console.log("Enviando al carrito:", context.cartProducts);
+    try {
+      const response = await fetch(
+        "http://localhost:3000/create-payment-intent",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+
+          body: JSON.stringify({
+            items: context.cartProducts.map((p) => ({
+              id: p?.id,
+              title: p?.title,
+              price: p?.price,
+              quantity: 1,
+            })),
+          }),
+        },
+      );
+
+      const data = await response.json();
+
+      if (data.url) {
+        window.location.href = data.url;
+      }
+    } catch (error) {
+      console.error("Error al procesar el pago:", error);
+    }
   };
 
   return (
     <aside
       className={`${
         context.isCheckoutSideMenuOpen ? "flex" : "hidden"
-      } checkout-side-menu flex-col fixed right-2 top-16 border border-black rounded-lg bg-white checkout-side-menu`}
+      } flex-col fixed right-2 top-16 border border-black rounded-lg bg-white checkout-side-menu`}
     >
-      <div className="flex justify-between items-center py-6 pl-6 pr-1.2">
+      <div className="flex justify-between items-center py-10 pl-6 pr-1.2">
         <h2 className="font-medium text-xl">My Orders</h2>
         <div
           className="cursor-pointer"
