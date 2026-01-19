@@ -50,11 +50,11 @@ export const ShoppingCartProvider: React.FC<{ children: ReactNode }> = ({
       try {
         const response = await fetchProducts();
         setData(response);
-        setLoading(false);
       } catch (error) {
         console.error(error);
       } finally {
         console.info("finally");
+        setLoading(false);
       }
     }
     fetchAPI();

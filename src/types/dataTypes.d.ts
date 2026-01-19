@@ -13,6 +13,7 @@ export interface Data {
 };
 
 export interface Product {
+  count: number;
   id: number;
   title: string;
   price: number;
@@ -37,4 +38,9 @@ interface CardUIProps extends ContextType {
   export interface OrdersCardProps {
   count: number;
   price: number | string;
+  title: string
+}
+
+export interface Sekeleton {
+  
 }

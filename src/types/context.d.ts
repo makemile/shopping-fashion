@@ -8,6 +8,8 @@ interface ProductsContextType {
 }
 
 export interface ContextType {
+  setLoading(arg0: boolean): unknown;
+  setItems(data: any): unknown;
   count: number;
   setCount: React.Dispatch<React.SetStateAction<number>>;
   openProductDetail: () => void;
@@ -20,7 +22,7 @@ export interface ContextType {
   isCheckoutSideMenuOpen: boolean;
   openCheckoutSideMenu: () => void;
   CloseCheckoutSideMenu: () => void;
-  order: any[];
+  order: Product[];
   setOrder: React.Dispatch<React.SetStateAction<any[]>>;
   data: Data[];
   loading: boolean;
