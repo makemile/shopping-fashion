@@ -52,7 +52,7 @@ export const CardUI: React.FC<CardUIProps> = ({
       onClick={() => showProduct(item)}
       className="bg-white cursor-pointer w-72 h-auto rounded-lg border border-slate-300"
     >
-      <figure className="relative mb-1 w-full">
+      <figure className="relative mb-1 w-full aspect-[6/6] overflow-hidden rounded-t-lg bg-slate-200">
         <span className="absolute bottom-0 left-0 backdrop-blur-sm bg-white/30 rounded-lg text-black/80 text-xs m-2 px-3 py-0.5 font-medium">
           {title}
         </span>
@@ -66,6 +66,8 @@ export const CardUI: React.FC<CardUIProps> = ({
             currentTarget.onerror = null;
             currentTarget.src = defaultImages;
           }}
+          loading="lazy"
+          fetchPriority="high"
         />
 
         {CheckProduct(id)}
