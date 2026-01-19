@@ -7,9 +7,11 @@ import { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { InputForm } from "../../components/ui/InputForm.jsx";
 import React from "react";
+import { CardSkeleton } from "../../helper/Skeleton";
 
 export const Home = () => {
   const context = useContext(ShoppingCartContext);
+  const ITEMS_PER_PAGE = 9;
   if (!context) return null;
   const { category } = useParams();
 
@@ -19,33 +21,20 @@ export const Home = () => {
   };
 
   const renderView = () => {
-    if (category !== undefined) {
-      const filtered = context.filterItem?.filter((item) =>
-        item.category.name.toLowerCase().includes(category.toLowerCase()),
-      );
-      if (context.loading) {
-        <p>cargando</p>;
-      } else {
-        if (filtered?.length) {
-          return filtered.map((item) => (
-            <CardUI
-              key={item.id}
-              id={item.id}
-              title={item.title}
-              images={item.images[0]}
-              category={item.category.name}
-              price={item.price}
-              showProduct={showProduct}
-              item={item}
-              context={context}
-            />
-          ));
-        } else {
-          return <div>There are nothing to see</div>;
-        }
-      }
-    } else {
-      return context.filterItem?.map((item) => (
+    if (context.loading) {
+      return [...Array(ITEMS_PER_PAGE)].map((_, index) => (
+        <CardSkeleton key={`skeleton-${index}`} />
+      ));
+    }
+
+    const itemsToRender = category
+      ? context.filterItem?.filter((item) =>
+          item.category.name.toLowerCase().includes(category.toLowerCase()),
+        )
+      : context.filterItem;
+
+    if (itemsToRender?.length > 0) {
+      return itemsToRender.map((item) => (
         <CardUI
           key={item.id}
           id={item.id}
@@ -53,12 +42,19 @@ export const Home = () => {
           images={item.images[0]}
           category={item.category.name}
           price={item.price}
-          showProduct={showProduct}
+          showProduct={() => showProduct(item)}
           item={item}
           context={context}
         />
       ));
     }
+    return (
+      <div className="col-span-full text-center py-20">
+        <p className="text-gray-500 font-medium">
+          No se encontraron resultados...
+        </p>
+      </div>
+    );
   };
 
   return (

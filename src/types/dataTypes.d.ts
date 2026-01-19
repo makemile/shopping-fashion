@@ -38,3 +38,7 @@ interface CardUIProps extends ContextType {
   count: number;
   price: number | string;
 }
+
+export interface Sekeleton {
+  
+}

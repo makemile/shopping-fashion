@@ -8,6 +8,8 @@ interface ProductsContextType {
 }
 
 export interface ContextType {
+  setLoading(arg0: boolean): unknown;
+  setItems(data: any): unknown;
   count: number;
   setCount: React.Dispatch<React.SetStateAction<number>>;
   openProductDetail: () => void;
