@@ -1,5 +1,5 @@
-import React from "react";
-import './styles.css';
+import React, { useState } from "react";
+import "./styles.css";
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { ShoppingCartContext } from "../../context";
@@ -9,6 +9,7 @@ import { TotalPrice } from "../../utils";
 
 export const CheckoutSideMenu = () => {
   const context = useContext(ShoppingCartContext);
+  const [loading, setLoading] = useState(false);
   if (!context) return null;
   const HandleDelete = (id: number | string) => {
     const filterProducts = context.cartProducts.filter(
@@ -19,26 +20,24 @@ export const CheckoutSideMenu = () => {
   };
   const HandleCheckout = async () => {
     console.log("enviando al carrito:", context.cartProducts);
+    setLoading(true);
     const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
     try {
-      const response = await fetch(
-       `${API_URL}/create-payment-intent`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-
-          body: JSON.stringify({
-            items: context.cartProducts.map((p) => ({
-              id: p?.id,
-              title: p?.title,
-              price: p?.price,
-              quantity: 1,
-            })),
-          }),
+      const response = await fetch(`${API_URL}/create-payment-intent`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+
+        body: JSON.stringify({
+          items: context.cartProducts.map((p) => ({
+            id: p?.id,
+            title: p?.title,
+            price: p?.price,
+            quantity: 1,
+          })),
+        }),
+      });
 
       const data = await response.json();
 
@@ -47,6 +46,7 @@ export const CheckoutSideMenu = () => {
       }
     } catch (error) {
       console.error("Error al procesar el pago:", error);
+      setLoading(false);
     }
   };
 
@@ -98,12 +98,42 @@ export const CheckoutSideMenu = () => {
           className="flex justify-center py-3.5 px-2"
         >
           <button
+            disabled={loading}
             onClick={() => {
               HandleCheckout();
             }}
             className="bg-black text-md text-white rounded-md w-full h-11"
           >
-            Checkout
+            {loading ? (
+              <div className="flex flex-col items-center justify-center leading-tight">
+                {/* Este es el Spinner */}
+                <svg
+                  className="animate-spin h-5 w-5 text-white mb-1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+                <span className="text-[8px] font-bold">
+                  El servidor está despertando, espera unos segundos...
+                </span>
+              </div>
+            ) : (
+              <span className="text-md font-medium">Checkout</span>
+            )}
           </button>
         </NavLink>
       )}
