@@ -19,9 +19,10 @@ export const CheckoutSideMenu = () => {
   };
   const HandleCheckout = async () => {
     console.log("enviando al carrito:", context.cartProducts);
+    const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
     try {
       const response = await fetch(
-        "http://localhost:3000/create-payment-intent",
+       `${API_URL}/create-payment-intent`,
         {
           method: "POST",
           headers: {

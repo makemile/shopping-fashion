@@ -8,7 +8,6 @@ import React from "react";
 export const MyOrders = () => {
   const context = useContext(ShoppingCartContext);
   if (!context) return null;
-  console.log(context, "context");
   return (
     <>
       <Layout>
