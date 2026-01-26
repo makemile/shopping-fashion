@@ -77,11 +77,11 @@ export const SignIn = () => {
 
           <div className="mt-2">
             <InputForm
-              label="email"
+              label="Email address"
               type="text"
               id="email"
               {...register("email")}
-              placeholder="insert to email"
+              placeholder="you@example.com"
               className="w-full"
               required
             />
@@ -90,11 +90,11 @@ export const SignIn = () => {
 
           <div className="mt-2">
             <InputForm
-              label="password"
+              label="Password"
               type="text"
               id="password"
               {...register("password")}
-              placeholder="insert to password"
+              placeholder="••••••••"
               className="w-full"
               required
             />
@@ -123,26 +123,26 @@ export const SignIn = () => {
           <form className="space-y-3">
             <div className="mt-2">
               <InputForm
-                label="email"
+                label="Email address"
                 type="email"
                 id="email"
                 ref={ref}
                 defaultValue={formValues.email}
                 // {...register("email", { required: "email is required" })}
-                placeholder="insert to email"
+                placeholder="you@example.com"
                 className="w-full"
               />
               {/* {errors?.email?.message} */}
             </div>
             <div className="mt-2">
               <InputForm
-                label="password"
+                label="Password"
                 type="password"
                 id="password"
                 ref={ref}
                 defaultValue={formValues.password}
                 // {...register("password", { required: "password is required" })}
-                placeholder="insert to password"
+                placeholder="••••••••"
                 className="w-full"
               />
               {/* {errors?.password?.message} */}
@@ -168,7 +168,7 @@ export const SignIn = () => {
           <Button
             type="submit"
             onClick={() => setView("create-user-info")}
-            disabled={isUserAccount}
+            disabled={!isUserAccount}
             className="justify-center"
           >
             Sign up

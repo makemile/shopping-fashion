@@ -1,7 +1,9 @@
+import React from "react";
 import { ShoppingCartContext } from "../../context";
 import { ArrowLeft } from "../svg/ArrowLeft";
 import { useContext } from "react";
-import React from "react";
+import './styles.css';
+
 export const ProductDetail = () => {
   const context = useContext(ShoppingCartContext);
   if (!context) return null;
@@ -18,14 +20,13 @@ export const ProductDetail = () => {
         >
           <ArrowLeft fillcolor="transparent" />
           <span className="font-semibold text-ms font-sans">BACK TO SHOP</span>
-          {/* <CloseCircle className="text-xl cursor-pointer" fillColor="white" /> */}
         </div>
       </div>
       <div className="content-detail">
         <figure className="flex grid-flow-col place-content-evenly">
           {context.productToShow.images && (
             <img
-              className="w-auto md:w-90 h-80  rounded-lg cursor-zoom-in"
+              className="w-auto md:w-90 h-80  rounded-lg cursor-zoom-in transition-transform duration-300 hover:scale-110"
               src={context.productToShow.images[0]}
               alt={context.productToShow.title}
             />

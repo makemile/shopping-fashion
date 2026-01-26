@@ -1,4 +1,3 @@
-import React from "react";
 import { useRoutes } from "react-router-dom";
 import { Home } from "../Pages/Home";
 import { MyAccount } from "../Pages/MyAccount";
@@ -7,11 +6,11 @@ import { MyOrders } from "../Pages/MyOrders";
 import { SignIn } from "../Pages/SignIn/SignIn";
 import { useContext } from "react";
 import { ShoppingCartContext } from "../context";
-
+import React from "react";
 
 export const AppRoutes = () => {
   const context = useContext(ShoppingCartContext);
-   if (!context) return null;
+  if (!context) return null;
   let routes = useRoutes([
     {
       path: "/",

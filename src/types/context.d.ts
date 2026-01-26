@@ -8,8 +8,8 @@ interface ProductsContextType {
 }
 
 export interface ContextType {
-  setLoading(arg0: boolean): unknown;
-  setItems(data: any): unknown;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  setItems: React.Dispatch<React.SetStateAction<Data[]>>;
   count: number;
   setCount: React.Dispatch<React.SetStateAction<number>>;
   openProductDetail: () => void;
@@ -35,6 +35,7 @@ export interface ContextType {
   setAccount: React.Dispatch<React.SetStateAction<any>>;
   signOut: boolean;
   setSignOut: React.Dispatch<React.SetStateAction<boolean>>;
+  setFilterItem: React.Dispatch<React.SetStateAction<Data[]>>;
 }
 
 export interface IconProps {

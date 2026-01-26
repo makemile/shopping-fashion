@@ -77,33 +77,39 @@ const NavLinks = () => {
         All
       </NavLink>
 
-      <NavLink to="/Clothes" style={getNavLinkStyle}>
+      <NavLink to="/clothes" style={getNavLinkStyle}>
         Clothes
       </NavLink>
 
-      <NavLink to="/Electronics" style={getNavLinkStyle}>
+      <NavLink to="/electronics" style={getNavLinkStyle}>
         Electronics
       </NavLink>
 
-      <NavLink to="/Furniture" style={getNavLinkStyle}>
+      <NavLink to="/furniture" style={getNavLinkStyle}>
         Furnitures
       </NavLink>
 
-      <NavLink to="/Miscellaneous" style={getNavLinkStyle}>
+      <NavLink to="/miscellaneous" style={getNavLinkStyle}>
         Miscellaneous
       </NavLink>
 
-      <NavLink to="/Shoes" style={getNavLinkStyle}>
+      <NavLink to="/shoes" style={getNavLinkStyle}>
         Shoes
       </NavLink>
 
       <div>{renderView()}</div>
-      <li
-        className="flex gap-1 cursor-pointer list-none"
-        onClick={(event) => openCart(event)}
-      >
-        <ShoppingBag fillColor="transparent" />
-        {context.count}
+      <li className="list-none">
+        <button
+          type="button"
+          onClick={openCart}
+          aria-label="Open shopping cart"
+          className="flex gap-1 items-center cursor-pointer
+               focus:outline-none focus:ring-2 focus:ring-white"
+        >
+          <ShoppingBag fillColor="transparent" aria-hidden="true" />
+          <span aria-hidden="true">{context.count}</span>
+          <span className="sr-only">{context.count} items in cart</span>
+        </button>
       </li>
     </>
   );
