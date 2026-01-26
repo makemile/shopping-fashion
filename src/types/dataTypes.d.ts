@@ -2,6 +2,7 @@ import { ContextType } from "./context";
 
 export interface Data {
   category: {
+    title: any;
     id: number;
     image: string;
     name: string;

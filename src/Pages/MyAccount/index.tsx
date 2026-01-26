@@ -48,13 +48,13 @@ export const MyAccount = () => {
           </div>
           <div className="mt-2">
             <InputForm
-              label="email"
+              label="Email address"
               type="email"
               id="email"
               defaultValue={date.email}
               {...register("email", { required: "email is required" })}
               autoComplete="on"
-              placeholder="insert to email"
+              placeholder="you@example.com"
               className="w-full"
               required
             />
@@ -62,7 +62,7 @@ export const MyAccount = () => {
           </div>
           <div className="mt-2">
             <InputForm
-              label="password"
+              label="Password"
               type="password"
               id="password"
               defaultValue={date.password}
@@ -70,7 +70,7 @@ export const MyAccount = () => {
                 required: "password is required",
               })}
               autoComplete="on"
-              placeholder="insert to password"
+              placeholder="••••••••"
               className="w-full"
             />
             {errors?.password?.message?.toString()}

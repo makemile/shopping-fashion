@@ -23,7 +23,6 @@ export const ShoppingCartProvider: React.FC<{ children: ReactNode }> = ({
   const [productToShow, setProductToShow] = useState({});
   const [order, setOrder] = useState<any>([]);
   const [data, setData] = useState<Data[]>([]);
-  console.log(data);
   const [loading, setLoading] = useState<boolean>(false);
   const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false);
   const [search, setSearch] = useState("");

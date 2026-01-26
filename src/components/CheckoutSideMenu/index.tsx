@@ -1,4 +1,5 @@
 import React from "react";
+import './styles.css';
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { ShoppingCartContext } from "../../context";
@@ -17,7 +18,7 @@ export const CheckoutSideMenu = () => {
     context.setCount(context.count - 1);
   };
   const HandleCheckout = async () => {
-    console.log("Enviando al carrito:", context.cartProducts);
+    console.log("enviando al carrito:", context.cartProducts);
     try {
       const response = await fetch(
         "http://localhost:3000/create-payment-intent",
@@ -52,9 +53,9 @@ export const CheckoutSideMenu = () => {
     <aside
       className={`${
         context.isCheckoutSideMenuOpen ? "flex" : "hidden"
-      } flex-col fixed right-2 top-16 border border-black rounded-lg bg-white checkout-side-menu`}
+      } flex-col fixed right-2 top-24 border border-black rounded-lg bg-white checkout-side-menu z-20`}
     >
-      <div className="flex justify-between items-center py-10 pl-6 pr-1.2">
+      <div className="flex justify-between items-center py-6 px-2 pl-6 pr-1.2">
         <h2 className="font-medium text-xl">My Orders</h2>
         <div
           className="cursor-pointer"

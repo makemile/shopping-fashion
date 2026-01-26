@@ -11,7 +11,7 @@ export const InputForm = forwardRef<HTMLInputElement, InputProps>(
     ref,
   ) => {
     return (
-      <div className="mb-4">
+      <div className="mb-4 flex flex-col gap-2">
         <label
           htmlFor={id}
           className={`text-sm font-medium leading-6 text-gray-900`}

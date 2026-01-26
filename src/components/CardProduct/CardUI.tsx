@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import {defaultImages}  from '../../images/default';
-import {CheckCircle} from "../svg/CheckCircle";
-import {FavoriteProduct} from "../svg/FavoriteProduct";
-import {PlusCircle} from "../svg/PlusCircle";
+import { defaultImages } from "../../images/default";
+import { CheckCircle } from "../svg/CheckCircle";
+import { FavoriteProduct } from "../svg/FavoriteProduct";
+import { PlusCircle } from "../svg/PlusCircle";
 import { Button } from "../ui/Button.js";
 import { CardUIProps, Product } from "../../types/dataTypes";
 import { ShoppingCartContext } from "../../context";
@@ -20,13 +20,13 @@ export const CardUI: React.FC<CardUIProps> = ({
 
   if (!context) {
     throw new Error("ShoppingCartContext is not available");
-  };
+  }
 
-  const {cartProducts} = context;
+  const { cartProducts } = context;
 
   const addProductsToCart = (
     event: React.MouseEvent<HTMLButtonElement>,
-    productData: Product
+    productData: Product,
   ) => {
     event.preventDefault();
     event.stopPropagation();
@@ -35,13 +35,22 @@ export const CardUI: React.FC<CardUIProps> = ({
   };
   const CheckProduct = (id: number) => {
     return (
-      cartProducts.filter((product: { id: number}) => product.id === id).length > 0
+      cartProducts.filter((product: { id: number }) => product.id === id)
+        .length > 0
     );
   };
 
   const favoriteProduct = () => {
     return (
-      <Button type="button" className="absolute top-0 right-0 items-end justify-end w-8 h-8 px-2 py-2 bg-transparent">
+      <Button
+        type="button"
+        aria-label="Add to favorites"
+        className="absolute top-0 right-0 items-end justify-end w-8 h-8 py-2 bg-transparent p-3"
+        onClick={(e) => {
+          e.stopPropagation();
+          // toggleFavorite();
+        }}
+      >
         <FavoriteProduct fillColor="transparent" />
       </Button>
     );
@@ -53,7 +62,7 @@ export const CardUI: React.FC<CardUIProps> = ({
       className="bg-white cursor-pointer w-72 h-auto rounded-lg border border-slate-300"
     >
       <figure className="relative mb-1 w-full aspect-[6/6] overflow-hidden rounded-t-lg bg-slate-200">
-        <span className="absolute bottom-0 left-0 backdrop-blur-sm bg-white/30 rounded-lg text-black/80 text-xs m-2 px-3 py-0.5 font-medium">
+        <span className="absolute bottom-0 left-0 backdrop-blur-sm bg-white/30 rounded-lg text-gray-800 text-xs m-2 px-3 py-0.5 font-medium">
           {title}
         </span>
 
@@ -88,14 +97,18 @@ export const CardUI: React.FC<CardUIProps> = ({
       ) : (
         <div className="flex justify-center p-2">
           <Button
-             onClick={(event: React.MouseEvent<HTMLButtonElement>)  => {
+            onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+              event.stopPropagation();
               addProductsToCart(event, item);
             }}
-            className="justify-center"
+            onKeyDown={(event: React.MouseEvent<HTMLButtonElement>) => {
+              return event.stopPropagation();
+            }}
+            className="justify-center focus:outline-none focus:ring-2 focus:ring-black"
             type="button"
           >
             <PlusCircle fillColor="transparent" />
-            Add To Card
+            Add To Cart
           </Button>
         </div>
       )}

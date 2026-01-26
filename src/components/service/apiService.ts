@@ -12,7 +12,7 @@ export const fetchProducts = async (): Promise<Data[]> => {
     }
     throw error;
   } finally {
-    console.log("succes");
+    console.info("succes");
   }
 };
 
