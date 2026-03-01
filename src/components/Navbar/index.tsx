@@ -124,7 +124,10 @@ export const Navbar = () => {
 
   return (
     <>
-      <nav className="flex w-11/12 justify-end">
+      <nav className="flex w-full justify-between items-center">
+        <NavLink to="/" className="font-bold">
+          SHOPI
+        </NavLink>
         <div className="hidden gap-3 md:flex items-center">
           <NavLinks />
         </div>
@@ -141,7 +144,7 @@ export const Navbar = () => {
         </div>
       </nav>
       {isOpen && (
-        <div className="flex basis-full flex-col items-center">
+        <div className="md:hidden flex basis-full flex-col items-center gap-3">
           <NavLinks />
         </div>
       )}
