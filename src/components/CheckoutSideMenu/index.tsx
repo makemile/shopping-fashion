@@ -20,8 +20,6 @@ export const CheckoutSideMenu = () => {
     context.setCount(context.count - 1);
   };
   const HandleCheckout = async () => {
-    const isCartEmpty = context?.cartProducts.length === 0;
-    const isButtonDisabled = isCartEmpty || loading;
     setLoading(true);
     const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
     try {

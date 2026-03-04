@@ -20,7 +20,8 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.53.0",
     "react-router-dom": "^6.25.1",
-    "rollup": "^4.59.0"
+    "rollup": "^4.59.0",
+    "serialize-javascript": "^7.0.4"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
