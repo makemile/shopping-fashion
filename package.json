@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.1.5",
-    "axios": "^1.12.0",
+    "axios": "^1.17.0",
     "caniuse-lite": "^1.0.30001649",
     "cors": "^2.8.5",
     "form-data": "^4.0.4",
